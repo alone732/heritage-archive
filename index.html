@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>遗产密令：消失的纹样 · 敦煌档案 DH-001</title>
+<meta name="description" content="以敦煌莫高窟第407窟隋代三兔莲花纹藻井为对象的互动解谜网页：寻找纹样、辨认矿物色、拼合图像、判断年代，最后完成一份壁画档案。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2317100c'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23c9a45c' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='9.6' r='2.8' fill='%23c9a45c'/%3E%3Ccircle cx='11.4' cy='19.4' r='2.8' fill='%23c9a45c'/%3E%3Ccircle cx='20.6' cy='19.4' r='2.8' fill='%23c9a45c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700&amp;display=swap">
+<style>
+/* ===== 设计令牌 ===== */
+:root{
+  --ink:#17100c;
+  --ink-2:#1e1611;
+  --ink-3:#241a13;
+  --line:rgba(201,164,92,.28);
+  --line-soft:rgba(201,164,92,.14);
+  --gold:#c9a45c;
+  --gold-deep:#8b6c3d;
+  --paper:#efe3cd;
+  --paper-dim:#b3a48f;
+  --azurite:#3e6f8a;
+  --malachite:#527a58;
+  --white-pig:#e6dfcd;
+  --ochre:#a4513a;
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--paper);
+  font:16px/1.85 var(--serif);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--line)}
+a:hover{color:var(--paper)}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* 纸张颗粒 */
+.grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20;opacity:.055;mix-blend-mode:soft-light}
+
+.app{max-width:1220px;margin:0 auto;padding:0 18px 60px}
+
+/* ===== 页眉 ===== */
+.mast{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;
+  padding:22px 0 0;border-bottom:1px solid var(--line-soft);
+}
+.mast-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mast h1{
+  margin:0;font:600 20px/1.2 var(--serif);letter-spacing:.12em;color:var(--paper);
+}
+.lat{font:11px/1 var(--sans);letter-spacing:.32em;color:var(--gold-deep);text-transform:uppercase}
+.mast-mark{
+  margin-left:auto;font:11px/1 var(--sans);letter-spacing:.16em;color:var(--gold-deep);
+  padding:6px 9px;border:1px solid var(--line-soft);
+}
+.mast-sub{flex:1 1 100%;font-size:13px;color:var(--paper-dim);padding-bottom:12px}
+
+/* ===== 关卡索引 ===== */
+.levels{display:flex;flex-wrap:wrap;gap:8px 20px;padding:14px 0 16px;border-bottom:1px solid var(--line-soft)}
+.lv{display:flex;align-items:center;gap:8px;font:12.5px/1 var(--sans);letter-spacing:.1em;color:#7d7060}
+.lv i{display:block;width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold-deep)}
+.lv.is-active{color:var(--gold)}
+.lv.is-active i{background:var(--gold);border-color:var(--gold)}
+.lv.is-done{color:var(--paper-dim)}
+.lv.is-done i{background:var(--gold-deep);border-color:var(--gold-deep)}
+
+/* ===== 工作台 ===== */
+.workbench{display:grid;grid-template-columns:1fr;gap:26px;padding-top:26px}
+@media(min-width:940px){
+  .workbench{grid-template-columns:252px minmax(0,1fr) 238px;gap:32px;align-items:start}
+  .task{position:sticky;top:22px}
+}
+.workbench[hidden]{display:none}
+
+/* 左：任务 */
+.task{min-width:0}
+.task-id{font:11.5px/1 var(--sans);letter-spacing:.2em;color:var(--gold-deep)}
+.task h2{margin:10px 0 14px;font:600 23px/1.45 var(--serif);letter-spacing:.02em}
+.task-body{font-size:15px;line-height:1.95;color:var(--paper-dim);margin:0 0 18px}
+.task-body b{color:var(--paper);font-weight:600}
+.frag{
+  background:var(--ink-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:14px 15px 16px;
+}
+.frag-k{font:11.5px/1 var(--sans);letter-spacing:.16em;color:var(--gold-deep);margin:0 0 9px}
+.frag p{margin:0;font-size:15px;line-height:1.95;color:#ded0b8}
+.ghost{
+  margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 16px;border:1px solid var(--line);
+  font:12.5px/1 var(--sans);letter-spacing:.1em;color:var(--paper-dim);
+  transition:border-color .2s,color .2s;
+}
+.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hint-slot{margin:12px 0 0;font-size:14px;line-height:1.85;color:#8f8171;min-height:1px}
+
+/* 中：图版 */
+.stage{min-width:0;position:relative}
+.frame{position:relative;padding:11px;border:1px solid var(--line);background:var(--ink-2)}
+.corner{position:absolute;width:15px;height:15px;border:1px solid var(--gold);opacity:.75}
+.corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.corner.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.corner.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+.photo{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:#120c09}
+.photo.is-inspect{cursor:crosshair}
+.photo img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.16) contrast(1.05) brightness(1.07);
+}
+.cap{display:flex;flex-wrap:wrap;gap:6px 14px;margin:11px 0 0;font:12.5px/1.7 var(--sans);color:#8f8170}
+.cap span:last-child{margin-left:auto}
+
+/* 热区 */
+.hot{
+  position:absolute;left:var(--l);top:var(--t);width:var(--w);height:var(--h);
+  background:none;border:0;padding:0;
+}
+.hot::after{
+  content:"";position:absolute;inset:0;border:1px solid transparent;
+  transition:border-color .2s,background .2s;
+}
+.hot:hover::after{border-color:rgba(201,164,92,.55);background:rgba(201,164,92,.07)}
+.hot.is-found::after{border-color:var(--gold);background:rgba(201,164,92,.12)}
+.hot .tag{
+  position:absolute;left:50%;bottom:100%;transform:translate(-50%,-8px);
+  white-space:nowrap;padding:4px 10px;background:rgba(23,16,12,.92);
+  border:1px solid var(--gold);font:12.5px/1.3 var(--sans);color:var(--gold);letter-spacing:.06em;
+}
+.hot .tag[hidden]{display:none}
+
+/* 色点 */
+.pin{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:44px;height:44px;display:grid;place-items:center}
+.pin i{
+  display:grid;place-items:center;width:27px;height:27px;border-radius:50%;
+  border:1px solid var(--gold);background:rgba(23,16,12,.74);
+  font:600 13px/1 var(--sans);font-style:normal;letter-spacing:.04em;color:var(--paper);
+  transition:transform .18s,background .2s;
+}
+.pin:hover i{transform:scale(1.1)}
+.pin.is-solved i{background:var(--pc);border-color:var(--paper);color:#17100c}
+.pin .pin-tag{
+  position:absolute;left:50%;top:100%;transform:translate(-50%,2px);
+  white-space:nowrap;padding:3px 8px;background:rgba(23,16,12,.94);
+  border:1px solid var(--line);font:11.5px/1.3 var(--sans);color:var(--gold);
+}
+
+/* 拼图 */
+.puzzle{
+  position:absolute;inset:0;display:grid;
+  grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);
+  gap:4px;background:#0f0a08;
+}
+.piece{
+  position:relative;padding:0;min-height:0;background-image:url("assets/zaojing_full.jpg");
+  background-size:300% 200%;background-repeat:no-repeat;
+  box-shadow:inset 0 0 0 1px rgba(201,164,92,.28);
+  min-height:0;
+}
+.piece:hover{box-shadow:inset 0 0 0 1px rgba(201,164,92,.8)}
+.piece.is-sel{box-shadow:inset 0 0 0 2px var(--gold)}
+.piece .n{
+  position:absolute;left:5px;top:3px;font:10.5px/1 var(--sans);color:rgba(239,227,205,.55);
+  text-shadow:0 1px 2px rgba(0,0,0,.9);
+}
+.ghost-layer{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .25s}
+.ghost-layer.is-on{opacity:.24}
+.ghost-layer img{width:100%;height:100%;object-fit:cover;filter:saturate(1.16) brightness(1.07)}
+
+/* 档案选项 */
+.split{display:grid;gap:16px;align-items:start}
+@media(min-width:640px){.split{grid-template-columns:190px minmax(0,1fr);gap:22px}}
+.records{display:grid;grid-template-columns:1fr;gap:10px;margin-top:2px}
+.rec{
+  display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;
+  padding:14px 15px;border:1px solid var(--line-soft);background:var(--ink-2);text-align:left;
+  min-height:44px;transition:border-color .2s,background .2s;
+}
+.rec:hover{border-color:var(--gold);background:var(--ink-3)}
+.rec .rec-id{font:600 14px/1.4 var(--serif);color:var(--gold-deep)}
+.rec .rec-main strong{display:block;font:600 15px/1.6 var(--serif);color:var(--paper);letter-spacing:.02em}
+.rec .rec-main span{display:block;margin-top:4px;font:13.5px/1.7 var(--sans);color:#9d8f7d}
+.rec.is-right{border-color:var(--gold);background:rgba(201,164,92,.1)}
+.rec.is-wrong{border-color:rgba(164,81,58,.7);background:rgba(164,81,58,.09)}
+.rec[disabled]{cursor:default}
+
+/* 反馈 */
+.verdict{
+  margin:16px 0 0;padding:0 0 0 12px;border-left:1px solid var(--line);
+  font-size:15px;line-height:1.95;color:var(--paper-dim);min-height:24px;
+}
+.verdict.is-ok{color:#e3d3ae;border-left-color:var(--gold)}
+.verdict.is-no{color:#d8a894;border-left-color:var(--ochre)}
+.next-row{margin-top:16px}
+
+/* 右：档案袋 */
+.dossier{min-width:0;padding-top:4px}
+.dossier h3{margin:0 0 12px;font:11.5px/1 var(--sans);letter-spacing:.2em;color:var(--gold-deep)}
+.clue{margin-bottom:10px;padding:13px 14px;border:1px solid var(--line-soft);background:var(--ink-2)}
+.clue.is-locked{color:#6f6354;background:none}
+.clue-n{display:block;font:11.5px/1.4 var(--sans);letter-spacing:.12em;color:var(--gold-deep)}
+.clue p{margin:8px 0 0;font-size:14.5px;line-height:1.9;color:#d7c9b2}
+.clue-empty{margin-top:7px;display:block;font:12px/1.6 var(--sans);color:#6f6354}
+.dossier .foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);font:12.5px/1.8 var(--sans);color:#857766}
+
+/* ===== 封面 ===== */
+.cover{position:relative;display:grid;gap:30px;padding:34px 0 44px;align-items:center}
+.cover[hidden]{display:none}
+@media(min-width:940px){
+  .cover{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:56px;min-height:calc(100vh - 150px);padding:20px 0 54px}
+  .cover-copy{order:1}
+  .lightbox{order:2}
+}
+.cover-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.cover-bg img{width:100%;height:100%;object-fit:cover;opacity:.58}
+.cover-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(90% 70% at 62% 36%, rgba(255,208,142,.10), rgba(23,16,12,0) 62%),
+    radial-gradient(130% 100% at 50% 50%, rgba(23,16,12,.30), rgba(23,16,12,.92) 56%, #17100c 100%);
+}
+.cover-copy,.lightbox{position:relative;z-index:1}
+
+.lightbox{width:100%;max-width:520px;margin:0 auto;padding:15px;border:1px solid var(--line);background:rgba(26,18,13,.6)}
+.lb-plate{position:relative;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;background:#0d0806}
+.lb-plate::before{
+  content:"";position:absolute;inset:-14%;
+  background:radial-gradient(circle at 50% 48%, rgba(255,206,142,.17), rgba(255,206,142,.04) 44%, transparent 66%);
+}
+.lb-ring{position:absolute;inset:7%;border:1px solid var(--line);border-radius:50%}
+.lb-ring.inner{inset:16%;border-color:var(--line-soft)}
+.disc{position:relative;width:82%;aspect-ratio:1/1;overflow:hidden;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 56%,rgba(0,0,0,.4) 74%,transparent 80%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 56%,rgba(0,0,0,.4) 74%,transparent 80%);
+  animation:spin 132s linear infinite;
+}
+.disc img{width:100%;height:100%;object-fit:cover;filter:saturate(1.24) contrast(1.08) brightness(1.16)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lb-mark{position:absolute;left:9px;top:8px;font:10.5px/1.3 var(--sans);letter-spacing:.16em;color:rgba(201,164,92,.62)}
+.lb-note{position:absolute;right:9px;bottom:8px;font:10.5px/1.3 var(--sans);letter-spacing:.1em;color:rgba(201,164,92,.45)}
+.lb-cap{display:flex;flex-wrap:wrap;gap:4px 12px;margin:12px 0 0;font:12.5px/1.7 var(--sans);color:#8f8170}
+.lb-cap span:last-child{margin-left:auto}
+
+.cover-copy .stamp{
+  display:inline-block;padding:5px 10px;border:1px solid var(--gold-deep);
+  font:11px/1.3 var(--sans);letter-spacing:.18em;color:var(--gold);
+}
+.cover-copy h2{margin:20px 0 8px;font:600 clamp(38px,9.4vw,64px)/1.12 var(--serif);letter-spacing:.1em}
+.cover-copy .lat{display:block;margin-bottom:24px;color:#a98a55}
+.cover-copy p{max-width:30em;margin:0 0 15px;font-size:15.5px;line-height:2.05;color:#cbbc9f}
+.cover-copy p.lede{font-size:17px;line-height:1.95;color:#e6d7bb;margin-bottom:18px}
+.cover-copy p.small{font-size:13px;color:#8b7c6a;line-height:1.85;margin-top:14px}
+.index{margin:26px 0 26px;border-top:1px solid var(--line-soft)}
+.index>div{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:12px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.index b{font:600 12px/1 var(--sans);color:var(--gold-deep)}
+.index span{font-size:13.5px;color:#a2937f}
+.index i{font:11.5px/1 var(--sans);font-style:normal;color:#6f6354}
+.reveal{animation:reveal .9s ease both}
+@keyframes reveal{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.lightbox{max-width:298px}.cover{padding:14px 0 34px}}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 26px;border:1px solid var(--gold);
+  background:var(--gold);color:#1a1209;font:600 15px/1 var(--sans);letter-spacing:.12em;
+  transition:background .2s,color .2s;
+}
+.btn:hover{background:transparent;color:var(--gold)}
+.btn.line{background:transparent;color:var(--gold)}
+.btn.line:hover{background:rgba(201,164,92,.12)}
+
+/* ===== 结局 ===== */
+.ending{padding:44px 0 20px}
+.end-badge{display:inline-block;padding:5px 12px;border:1px solid var(--gold);font:10.5px/1.4 var(--sans);letter-spacing:.2em;color:var(--gold)}
+.ending h2{margin:18px 0 6px;font:600 clamp(24px,5.4vw,34px)/1.4 var(--serif);letter-spacing:.04em}
+.end-sub{font-size:13.5px;color:var(--paper-dim);margin:0 0 24px}
+.end-grid{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:880px){.end-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:34px;align-items:start}}
+.end-photo .frame{padding:10px}
+.end-photo .cap{margin-top:10px}
+.facts{margin:0;border-top:1px solid var(--line)}
+.facts>div{display:grid;grid-template-columns:74px minmax(0,1fr);gap:14px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.facts dt{font:12px/1.7 var(--sans);letter-spacing:.1em;color:var(--gold-deep);margin:0}
+.facts dd{margin:0;font-size:15px;line-height:1.95;color:#ddd0b9}
+.closing{
+  margin:26px 0 0;padding:22px 0 0;border-top:1px solid var(--line);
+  font-size:16px;line-height:2.05;color:#e7d9c0;max-width:38em;
+}
+.stats{margin:20px 0 0;font:12.5px/1.8 var(--sans);color:#857766;letter-spacing:.04em}
+.end-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.sources{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-soft)}
+.sources h3{margin:0 0 12px;font:11.5px/1 var(--sans);letter-spacing:.2em;color:var(--gold-deep)}
+.sources ul{margin:0;padding:0;list-style:none}
+.sources li{margin:0 0 9px;font:13.5px/1.8 var(--sans);color:#a2937f}
+.sources p{margin:14px 0 0;font-size:12.5px;line-height:1.9;color:#857766}
+.sources[hidden]{display:none}
+
+/* ===== 通用 ===== */
+.fade-in{animation:fadeIn .5s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .disc{animation:none}
+  .fade-in{animation:none}
+  .reveal{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<svg class="grain" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <filter id="grain-f"><feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="3" stitchTiles="stitch"/></filter>
+  <rect width="100" height="100" filter="url(#grain-f)"/>
+</svg>
+
+<main class="app">
+  <header class="mast">
+    <div class="mast-title">
+      <h1>遗产密令</h1>
+      <span class="lat">Heritage Archive</span>
+    </div>
+    <div class="mast-mark">档案编号 DH-001</div>
+    <div class="mast-sub">敦煌莫高窟 · 窟顶藻井 · 一份记录散佚的图像档案</div>
+  </header>
+  <div class="levels" id="levels" aria-hidden="true"></div>
+
+  <!-- ===== 视图：封面 ===== -->
+  <section class="cover" id="cover">
+    <div class="cover-bg" aria-hidden="true"><img src="assets/backdrop.jpg" alt=""></div>
+
+    <div class="lightbox reveal" style="animation-delay:.1s">
+      <div class="lb-plate">
+        <span class="lb-ring"></span>
+        <span class="lb-ring inner"></span>
+        <div class="disc"><img src="assets/jingxin.jpg" alt="敦煌莫高窟第407窟窟顶井心：重层八瓣莲花，花心为三兔共耳纹样"></div>
+        <span class="lb-mark">PLATE 01 · 未 编 目</span>
+        <span class="lb-note">玻璃底片 · 无题</span>
+      </div>
+      <p class="lb-cap"><span>第407窟 窟顶井心</span><span>影像 · 敦煌研究院公开资料</span></p>
+    </div>
+
+    <div class="cover-copy">
+      <span class="stamp reveal">案卷 DH-001 · 待重编</span>
+      <h2 class="reveal" style="animation-delay:.12s">消失的纹样</h2>
+      <span class="lat reveal" style="animation-delay:.26s">Heritage Archive · Dunhuang · Cave 407</span>
+      <p class="lede reveal" style="animation-delay:.4s">底片柜最下层，抽出一张没有编号的玻璃底片。</p>
+      <p class="reveal" style="animation-delay:.62s">影像还在：一方覆斗形窟顶，一朵四层八瓣的大莲花，八身飞天绕着它飞。可它的著录卡是空的——纹样没有名字，颜料没有注记，六块底片散着顺序，出自哪一座洞窟，那一栏只画了一道横线。</p>
+      <p class="reveal" style="animation-delay:.84s">按规程，记录不全的档案必须重新调查。于是这张底片被放上观片台，编号 DH-001，交到你手上。</p>
+      <div class="index reveal" style="animation-delay:1s">
+        <div><b>01</b><span>纹样 · 名称缺失</span><i>待恢复</i></div>
+        <div><b>02</b><span>色彩 · 颜料注记散佚</span><i>待恢复</i></div>
+        <div><b>03</b><span>图像 · 六块底片错序</span><i>待恢复</i></div>
+        <div><b>04</b><span>年代 · 窟号与年代空缺</span><i>待恢复</i></div>
+      </div>
+      <div class="reveal" style="animation-delay:1.16s">
+        <button class="btn" data-act="start">开始调查</button>
+      </div>
+      <p class="small reveal" style="animation-delay:1.26s">四关 · 约 3–5 分钟 · 无需声音。每一条结论，都要从画面里重新看出来。</p>
+    </div>
+  </section>
+
+  <!-- ===== 视图：工作台 ===== -->
+  <div class="workbench" id="workbench" hidden>
+    <div class="task" id="task"></div>
+    <div class="stage" id="stage"></div>
+    <aside class="dossier" id="dossier"></aside>
+  </div>
+
+  <!-- ===== 视图：结局 ===== -->
+  <section class="ending" id="ending" hidden>
+    <span class="end-badge">档案恢复成功</span>
+    <h2>三兔莲花纹藻井</h2>
+    <p class="end-sub">敦煌莫高窟第407窟 · 主室窟顶 · 隋</p>
+    <div class="end-grid">
+      <div class="end-photo">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="photo"><img src="assets/zaojing_full.jpg" alt="敦煌莫高窟第407窟三兔莲花纹藻井全景：方井中央为重层八瓣莲花，花心三兔共耳，四周八身飞天环绕，外围为菱格莲纹边饰"></div>
+        </div>
+        <p class="cap"><span>第407窟 三兔莲花纹藻井</span><span>敦煌研究院公开影像</span></p>
+      </div>
+      <div>
+        <dl class="facts">
+          <div><dt>名称</dt><dd>三兔莲花纹藻井，亦称「三兔共耳」</dd></div>
+          <div><dt>所在</dt><dd>莫高窟第407窟主室覆斗形窟顶，方井井心</dd></div>
+          <div><dt>年代</dt><dd>隋（581–618）。同类「三兔共耳」图案在莫高窟约二十座洞窟中出现，最早见于隋开皇四年（584）的第302窟</dd></div>
+          <div><dt>构图</dt><dd>方井中央绘四层八瓣大莲花，莲花四周八身飞天环绕飞行，或持莲花、或托花盘、或捧香炉、或舞锡杖；井心外缘为多层菱格莲花纹与垂幔纹边饰</dd></div>
+          <div><dt>纹样</dt><dd>花心三只兔子两两共用一耳，看似只有三耳；三耳构成等边三角形，三兔逆时针相逐、永远追不上彼此。兔与飞天、天花的旋转方向一致，静止的莲花也像在转</dd></div>
+          <div><dt>色彩</dt><dd>以矿物颜料为主：石青取自蓝铜矿，石绿取自孔雀石，红为赭石一类含铁颜料，白则来自高岭土、石膏或铅白，墨为炭黑。历经千年氧化与褪色，今日所见的颜色已不同于初绘</dd></div>
+          <div><dt>意义</dt><dd>藻井位居窟顶正中，如天穹华盖；莲花象征清净，「三」在中国传统中含完整、无尽的意味，兔则寄托瑞应与生生不息。同类三兔共耳图像亦见于中亚与欧洲的宗教建筑装饰，被视为丝绸之路文化交流的一个例证</dd></div>
+        </dl>
+        <p class="closing">你恢复的不只是一幅图像。方井、莲花、三只共用耳朵的兔子、环绕的飞天与收边的菱格纹，把隋代画工对天空的想象压缩进了一方窟顶。它也没有被封存在过去——颜料的褪色、图案的流布、一次又一次的拍摄与辨认，都是这段记忆仍在被阅读的证据。</p>
+        <p class="stats" id="stats"></p>
+        <div class="end-actions">
+          <button class="btn" data-act="restart">重新探索</button>
+          <button class="btn line" data-act="sources" aria-expanded="false" aria-controls="sources">查看完整档案</button>
+        </div>
+        <div class="sources" id="sources" hidden>
+          <h3>资料与图像出处</h3>
+          <ul>
+            <li><a href="https://www.dha.ac.cn/info/1425/3569.htm" target="_blank" rel="noopener">敦煌研究院 · 莫高窟第407窟</a>：窟形、藻井结构与三兔纹样的官方著录</li>
+            <li><a href="https://m.thepaper.cn/newsDetail_forward_21662488" target="_blank" rel="noopener">澎湃新闻 · 敦煌发布《兔年说兔：敦煌壁画里的「小白兔」》</a>：三兔共耳图案的构成与流布</li>
+            <li><a href="https://m.gmw.cn/2025-10/31/content_1304206740.htm" target="_blank" rel="noopener">光明网《何以中国·壁画里的中国：敦煌「三兔藻井」》</a>：第407窟藻井的时代与现状</li>
+            <li><a href="https://www.tkww.hk/epaper/view/newsDetail/mobile/1893002674757046272.html" target="_blank" rel="noopener">大公文汇《敦煌莫高窟：探密「三兔共耳」的千年联结》</a>：图案在丝绸之路上的跨文化出现</li>
+          </ul>
+          <p>本页为教学性互动作品。壁画影像取自敦煌研究院等机构公开的第407窟藻井资料，显示时对亮度与饱和度略有调整以便观察细节；关卡中的点击区域与色点是示意标注，不是文物著录的一部分。纹样、年代与文化解释均依上述公开资料整理，未作虚构。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  var IMG_FULL = 'assets/zaojing_full.jpg';
+
+  /* ---------- 数据 ---------- */
+
+  // 第一关：可点击区域（百分比定位，依据画面实测）
+  var HOTSPOTS = [
+    { id:'rabbit', l:40, t:41, w:20, h:16, label:'区域 一' },
+    { id:'petal',  l:43, t:19, w:14, h:9,  label:'区域 二' },
+    { id:'apsara', l:66, t:9,  w:15, h:12, label:'区域 三' },
+    { id:'border', l:37, t:92, w:26, h:7,  label:'区域 四' }
+  ];
+
+  var HOT_WRONG = {
+    petal:  '这是重层八瓣莲花的一片花瓣。莲瓣围住了纹样，但纹样本身不在花瓣上——它还在更里面。',
+    apsara: '这是环绕莲花飞行的飞天。它是这幅藻井的另一位主角：持花、托盘、捧炉、舞锡杖，衣带当风。档案里丢失的不是它。',
+    border: '这是井心外围的菱格莲花纹边饰，作用是把整幅图案收进方井的边框里。它属于边框，不属于井心。'
+  };
+
+  // 第二关：三个色点（坐标取自井心特写图的实测色域）
+  var PINS = [
+    { id:'blue',  label:'甲', x:10, y:78, name:'石青', where:'飞天飘带的蓝', tone:'偏冷', pc:'#3e6f8a' },
+    { id:'green', label:'乙', x:72, y:10, name:'石绿', where:'莲瓣背后的地色', tone:'偏黄绿', pc:'#527a58' },
+    { id:'white', label:'丙', x:28, y:38, name:'白',  where:'莲瓣与壁面的白', tone:'最亮', pc:'#e6dfcd' }
+  ];
+
+  var COLOR_ROUNDS = [
+    { pin:'blue',  name:'石青', frag:'「石青：蓝铜矿研磨成的蓝色颜料。画工用它画飘带、天空与璎珞——在这幅褪色的壁画上，它还留着一层发冷的蓝。」', ok:'蓝铜矿磨成的粉，比植物色更耐久，也更容易在千年里失掉明度。' },
+    { pin:'green', name:'石绿', frag:'「石绿：孔雀石研磨成的绿色。它被敷在莲瓣背后的地色上，让白花瓣从绿底里跳出来。」', ok:'孔雀石磨成的粉，多压在花卉纹样的地色上，是敦煌绿的主要来源。' },
+    { pin:'white', name:'白',   frag:'「白：壁面与莲瓣的白。敦煌的白不止一种——高岭土、石膏、铅白，都曾被磨成粉敷上壁面。」', ok:'白色的来源最杂，也最容易在照片里被当成「没有画」。' }
+  ];
+
+  var CLUES = [
+    { k:'线索一 · 圆心', t:'纹样不是边角的装饰。它被画在窟顶方井的最正中——整幅藻井的秩序，从这个圆心开始向外铺开。' },
+    { k:'线索二 · 矿物', t:'石青来自蓝铜矿，石绿来自孔雀石，都是矿石磨成的粉。它们比植物色更耐久，却也会氧化、褪色：你今天看到的颜色，是一件已经走过一千四百年的东西。' },
+    { k:'线索三 · 秩序', t:'方井、圆心、环绕的飞天、收边的菱格纹，一层套一层。局部只有放回原位才有意义——这是敦煌藻井的构图法。' }
+  ];
+
+  var RECORDS = [
+    { id:'A', head:'北魏 · 第257窟', title:'《九色鹿本生》', desc:'横卷式故事画，画在壁面，按横向展开讲述九色鹿、溺人与国王的因缘。' },
+    { id:'B', head:'隋 · 第407窟', title:'三兔莲花纹藻井', desc:'覆斗形窟顶的方井，井心为四层八瓣莲花，花心三兔共耳，八身飞天环绕飞行。' },
+    { id:'C', head:'盛唐 · 第320窟', title:'龛顶双飞天', desc:'画在佛龛顶部，两身飞天对称回身、长带翻卷，是唐代飞天的代表。' }
+  ];
+
+  var HINTS = {
+    1:'缩小范围：整幅方井的最中央，那朵大莲花的花心里有一个小圆。',
+    2:'看色相，不看亮度：蓝偏冷、绿偏黄、白最亮。',
+    3:'先定四个角：左上角是一片蓝色飘带，右上角是飞天的头光。以它们为锚点推其他块。',
+    4:'回到三份线索：圆心上的三兔、矿石研磨的三色、方井层层收拢的秩序。'
+  };
+
+  var NEXT_LABEL = {
+    1:'继续：档案 02 · 色彩',
+    2:'继续：档案 03 · 图像',
+    3:'继续：档案 04 · 年代',
+    4:'打开最终档案'
+  };
+
+  var state = newState();
+
+  function newState(){
+    return {
+      screen:'cover',
+      level:1,
+      clues:[false,false,false],
+      hints:0,
+      hintUsed:{ 1:false, 2:false, 3:false, 4:false },
+      startAt:0,
+      endAt:0,
+      l1:{ found:false },
+      l2:{ round:0, wrong:0 },
+      l3:{ order:[0,1,2,3,4,5], sel:null, moves:0, done:false, ghost:false },
+      l4:{ chosen:null, done:false },
+      mounted:0,
+      verdict:{ tone:'', text:'' }
+    };
+  }
+
+  /* ---------- 小工具 ---------- */
+  function el(id){ return document.getElementById(id); }
+  function setVerdict(tone, text){ state.verdict = { tone:tone, text:text }; }
+
+  function verdictHTML(){
+    var cls = 'verdict' + (state.verdict.tone ? ' is-' + state.verdict.tone : '');
+    var text = state.verdict.text || '在左侧任务与画面之间来回看：每一条结论都要从图像里看出依据。';
+    return '<p class="' + cls + '" role="status" aria-live="polite">' + text + '</p>';
+  }
+
+  function levelDone(lv){
+    if(lv === 1) return state.l1.found;
+    if(lv === 2) return state.l2.round >= COLOR_ROUNDS.length;
+    if(lv === 3) return state.l3.done;
+    if(lv === 4) return state.l4.done;
+    return false;
+  }
+
+  /* ---------- 关卡索引 ---------- */
+  function renderLevels(){
+    var names = ['01 纹样','02 色彩','03 图像','04 年代'];
+    var html = '';
+    for(var i = 0; i < names.length; i++){
+      var idx = i + 1, cls = 'lv';
+      if(state.screen === 'ending' || idx < state.level) cls += ' is-done';
+      else if(state.screen === 'game' && idx === state.level) cls += ' is-active';
+      html += '<span class="' + cls + '"><i></i>' + names[i] + '</span>';
+    }
+    el('levels').innerHTML = html;
+  }
+
+  /* ---------- 左栏 ---------- */
+  function renderTask(){
+    var done = levelDone(state.level);
+    var used = state.hintUsed[state.level];
+    var head = '', title = '', body = '', frag = '';
+
+    if(state.level === 1){
+      head  = '档案 01 / 04 · 纹样';
+      title = '寻找失记的纹样';
+      body  = '壁画被数字化成一张方井图。档案里只剩一段形状记录——请<b>点击你认为对应的那块画面</b>。点错会告诉你，那里画的究竟是什么。';
+      frag  = '<div class="frag"><p class="frag-k">残页 07 · 纹样条目</p><p>「……环形，三只同样的动物，两两共用一耳。看上去只有三只耳朵；跑起来，却像在转。」</p></div>';
+    } else if(state.level === 2){
+      var cur = COLOR_ROUNDS[state.l2.round];
+      head  = '档案 02 / 04 · 色彩';
+      title = '复原颜料注记';
+      body  = '三条注记分别记着一种矿物色和它的用法。请指出它<b>落在这幅壁画的哪一处</b>——点画面上的甲、乙、丙。';
+      frag  = cur
+        ? '<div class="frag"><p class="frag-k">残页 · 色彩注记 0' + (state.l2.round + 1) + '</p><p>' + cur.frag + '</p></div>'
+        : '<div class="frag"><p class="frag-k">残页 · 色彩注记</p><p>三条注记已经归位：石青、石绿、白。矿物研磨的颜色，比纸上的名字更沉。</p></div>';
+    } else if(state.level === 3){
+      head  = '档案 03 / 04 · 图像';
+      title = '拼合残缺底片';
+      body  = '六块底片被打散，顺序全乱了。<b>点击两块就能交换位置</b>，把井心拼回原样。看不清时可以对照片原图。';
+      frag  = '<div class="frag"><p class="frag-k">残页 12 · 装裱说明</p><p>「底片六块，三列两行。复位之法：先找飞天的飘带，再看莲瓣的开合，最后校中心的圆。」</p></div>';
+    } else {
+      head  = '档案 04 / 04 · 年代';
+      title = '破解最终密令';
+      body  = '三份线索已经归位。现在，把这份档案放回它应该在的地方——<b>选出与之相符的另一份著录</b>。';
+      frag  = '<div class="frag"><p class="frag-k">残页 14 · 待填栏位</p><p>「出处：窟号 ____　题材 ____　年代 ____」<br>方井、莲花、三兔、飞天——四条依据，缺一不可。</p></div>';
+    }
+
+    var foot = done
+      ? '<p class="hint-slot">本关已归档。继续的入口在画面下方。</p>'
+      : '<button class="ghost" data-act="hint">提示</button><p class="hint-slot">' + (used ? HINTS[state.level] : '') + '</p>';
+
+    el('task').innerHTML =
+      '<div class="task-id">' + head + '</div>' +
+      '<h2>' + title + '</h2>' +
+      '<div class="task-body">' + body + '</div>' +
+      frag + foot;
+  }
+
+  /* ---------- 中栏 ---------- */
+  function cornersHTML(){
+    return '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>';
+  }
+
+  function nextBtn(){
+    if(!levelDone(state.level)) return '';
+    return '<div class="next-row"><button class="btn" data-act="next">' + NEXT_LABEL[state.level] + '</button></div>';
+  }
+
+  function stageL1(){
+    var found = state.l1.found, hots = '';
+    for(var i = 0; i < HOTSPOTS.length; i++){
+      var h = HOTSPOTS[i];
+      var isRight = h.id === 'rabbit';
+      var cls = 'hot' + (found && isRight ? ' is-found' : '');
+      var tag = isRight ? '<span class="tag"' + (found ? '' : ' hidden') + '>三兔共耳</span>' : '';
+      hots += '<button class="' + cls + '" style="--l:' + h.l + '%;--t:' + h.t + '%;--w:' + h.w + '%;--h:' + h.h + '%" ' +
+              'data-act="hot" data-hot="' + h.id + '" aria-label="' + h.label + '">' + tag + '</button>';
+    }
+    return '' +
+      '<div class="frame">' + cornersHTML() +
+        '<div class="photo is-inspect"><img src="' + IMG_FULL + '" alt="敦煌莫高窟第407窟三兔莲花纹藻井：方井中央重层八瓣莲花，花心三兔共耳，四周飞天环绕">' + hots + '</div>' +
+      '</div>' +
+      '<p class="cap"><span>第407窟 三兔莲花纹藻井</span><span>' + (found ? '已定位纹样' : '点击画面寻找纹样') + '</span></p>' +
+      verdictHTML() + nextBtn();
+  }
+
+  function stageL2(){
+    var solvedPins = {};
+    for(var i = 0; i < state.l2.round; i++) solvedPins[COLOR_ROUNDS[i].pin] = true;
+    var pins = '';
+    for(var j = 0; j < PINS.length; j++){
+      var p = PINS[j], solved = !!solvedPins[p.id];
+      pins += '<button class="pin' + (solved ? ' is-solved' : '') + '" style="--x:' + p.x + '%;--y:' + p.y + '%;' + (solved ? '--pc:' + p.pc + ';' : '') + '" ' +
+              'data-act="pin" data-pin="' + p.id + '" aria-label="色点 ' + p.label + '">' +
+              '<i>' + p.label + '</i>' + (solved ? '<span class="pin-tag">' + p.name + '</span>' : '') + '</button>';
+    }
+    return '' +
+      '<div class="frame">' + cornersHTML() +
+        '<div class="photo"><img src="assets/jingxin.jpg" alt="第407窟井心特写：八瓣莲花、花心三兔，飞天飘带与地色清晰可辨">' + pins + '</div>' +
+      '</div>' +
+      '<p class="cap"><span>第407窟 井心（局部）</span><span>已录 ' + state.l2.round + ' / 3 种矿物色</span></p>' +
+      verdictHTML() + nextBtn();
+  }
+
+  function stageL3(){
+    var body;
+    if(state.l3.done){
+      body = '<div class="photo"><img src="' + IMG_FULL + '" alt="拼合完成的三兔莲花纹藻井全图"></div>';
+    } else {
+      var pieces = '';
+      for(var s = 0; s < 6; s++){
+        var p = state.l3.order[s];
+        var col = p % 3, row = (p - col) / 3;
+        var sel = state.l3.sel === s ? ' is-sel' : '';
+        pieces += '<button class="piece' + sel + '" style="background-position:' + (col * 50) + '% ' + (row * 100) + '%" ' +
+                  'data-act="piece" data-slot="' + s + '" aria-label="拼图第 ' + (s + 1) + ' 格，底片第 ' + (p + 1) + ' 块"><span class="n">' + (s + 1) + '</span></button>';
+      }
+      body = '<div class="puzzle">' + pieces + '</div>' +
+             '<div class="ghost-layer' + (state.l3.ghost ? ' is-on' : '') + '"><img src="' + IMG_FULL + '" alt=""></div>';
+    }
+    var ghostBtn = state.l3.done ? '' :
+      '<button class="ghost" data-act="ghost" style="min-height:40px;margin-top:12px">' + (state.l3.ghost ? '关闭对照' : '对照原图') + '</button>';
+
+    return '' +
+      '<div class="frame">' + cornersHTML() +
+        '<div class="photo">' + body + '</div>' +
+      '</div>' +
+      '<div class="cap"><span>六块底片 · 三列两行</span><span>' + (state.l3.done ? '已拼合 · ' + state.l3.moves + ' 次交换' : '点击两块交换位置') + '</span></div>' +
+      ghostBtn + verdictHTML() + nextBtn();
+  }
+
+  function stageL4(){
+    var recs = '';
+    for(var i = 0; i < RECORDS.length; i++){
+      var r = RECORDS[i], cls = 'rec';
+      if(state.l4.chosen === r.id) cls += r.id === 'B' ? ' is-right' : ' is-wrong';
+      recs += '<button class="' + cls + '" data-act="record" data-rec="' + r.id + '"' + (state.l4.done ? ' disabled' : '') + '>' +
+              '<span class="rec-id">' + r.id + '</span>' +
+              '<span class="rec-main"><strong>' + r.head + ' · ' + r.title + '</strong><span>' + r.desc + '</span></span>' +
+              '</button>';
+    }
+    return '' +
+      '<div class="split">' +
+        '<div class="frame">' + cornersHTML() +
+          '<div class="photo"><img src="' + IMG_FULL + '" alt="待核对的三兔莲花纹藻井全图"></div>' +
+        '</div>' +
+        '<div>' +
+          '<p class="frag-k" style="margin-bottom:10px">候选著录 · 三选一</p>' +
+          '<div class="records">' + recs + '</div>' +
+          verdictHTML() + nextBtn() +
+        '</div>' +
+      '</div>';
+  }
+
+  function isSorted(a){
+    for(var i = 0; i < a.length; i++){
+      if(a[i] !== i) return false;
+    }
+    return true;
+  }
+
+  function misplacedCount(a){
+    var n = 0;
+    for(var i = 0; i < a.length; i++){
+      if(a[i] !== i) n++;
+    }
+    return n;
+  }
+
+  // 打乱底片：保证不是原序，且至少 4 处错位（至少两次交换才可能复位）
+  function shufflePuzzle(){
+    var a = [0,1,2,3,4,5], guard = 0;
+    do {
+      a = [0,1,2,3,4,5];
+      for(var i = a.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+      guard++;
+    } while((isSorted(a) || misplacedCount(a) < 4) && guard < 40);
+    if(isSorted(a) || misplacedCount(a) < 4) a = [3,4,5,0,1,2];
+    state.l3.order = a;
+    state.l3.sel = null;
+    state.l3.ghost = false;
+    state.l3.moves = 0;
+    state.l3.done = false;
+  }
+
+  function renderStage(){
+    var animate = state.mounted !== state.level;
+    state.mounted = state.level;
+    if(state.level === 3 && !state.l3.done && isSorted(state.l3.order)) shufflePuzzle();
+    el('stage').innerHTML =
+      state.level === 1 ? stageL1() :
+      state.level === 2 ? stageL2() :
+      state.level === 3 ? stageL3() : stageL4();
+    var stage = el('stage');
+    stage.classList.remove('fade-in');
+    if(animate){
+      void stage.offsetWidth;
+      stage.classList.add('fade-in');
+    }
+  }
+
+  /* ---------- 右栏 ---------- */
+  function renderDossier(){
+    var cn = ['线索 一','线索 二','线索 三'];
+    var items = '';
+    for(var i = 0; i < 3; i++){
+      if(state.clues[i]){
+        items += '<article class="clue"><span class="clue-n">' + CLUES[i].k + '</span><p>' + CLUES[i].t + '</p></article>';
+      } else {
+        items += '<div class="clue is-locked"><span class="clue-n">' + cn[i] + '</span><span class="clue-empty">未恢复</span></div>';
+      }
+    }
+    var count = state.clues.filter(Boolean).length;
+    el('dossier').innerHTML =
+      '<h3>档案袋</h3>' + items +
+      '<p class="foot">已收录 ' + count + ' / 3 条线索<br>提示调用 ' + state.hints + ' 次</p>';
+  }
+
+  /* ---------- 结局 ---------- */
+  function statsLine(){
+    var mins = state.startAt && state.endAt ? Math.max(1, Math.round((state.endAt - state.startAt) / 60000)) : 1;
+    return '调查记录 · 拼图交换 ' + state.l3.moves + ' 次 · 提示 ' + state.hints + ' 次 · 用时约 ' + mins + ' 分钟';
+  }
+
+  function render(){
+    var isGame = state.screen === 'game', isEnd = state.screen === 'ending';
+    el('cover').hidden = state.screen !== 'cover';
+    el('workbench').hidden = !isGame;
+    el('ending').hidden = !isEnd;
+    renderLevels();
+    if(isGame){
+      renderTask();
+      renderStage();
+      renderDossier();
+    }
+    if(isEnd){
+      el('stats').textContent = statsLine();
+    }
+  }
+
+  /* ---------- 交互 ---------- */
+  function clickHot(id){
+    if(state.l1.found) return;
+    if(id === 'rabbit'){
+      state.l1.found = true;
+      state.clues[0] = true;
+      setVerdict('ok','找到了：三兔共耳。三只兔子首尾相逐，两两共用一只耳朵——看上去只有三只耳朵，可从任何方向数，每只兔子都有两只。');
+    } else {
+      setVerdict('no', HOT_WRONG[id] || '这里没有档案记录的形状。');
+    }
+    render();
+  }
+
+  function clickPin(id){
+    var cur = COLOR_ROUNDS[state.l2.round];
+    if(!cur) return;
+    var already = false;
+    for(var i = 0; i < state.l2.round; i++){
+      if(COLOR_ROUNDS[i].pin === id) already = true;
+    }
+    if(already) return;
+    if(id === cur.pin){
+      state.l2.round++;
+      if(state.l2.round >= COLOR_ROUNDS.length) state.clues[1] = true;
+      setVerdict('ok','记下了：' + cur.name + '。' + cur.ok);
+    } else {
+      var pin = PINS.filter(function(p){ return p.id === id; })[0];
+      state.l2.wrong++;
+      setVerdict('no','这一处是' + pin.where + '，' + pin.tone + '。档案要记的' + cur.name + '在别处——再看一眼色相。');
+    }
+    render();
+  }
+
+  function clickPiece(slot){
+    if(state.l3.done) return;
+    if(state.l3.sel === null){
+      state.l3.sel = slot;
+      setVerdict('', '已选中第 ' + (slot + 1) + ' 格，再点另一格即可交换。');
+    } else if(state.l3.sel === slot){
+      state.l3.sel = null;
+      setVerdict('', '取消了选择。');
+    } else {
+      var a = state.l3.sel, b = slot;
+      var tmp = state.l3.order[a];
+      state.l3.order[a] = state.l3.order[b];
+      state.l3.order[b] = tmp;
+      state.l3.sel = null;
+      state.l3.moves++;
+      if(state.l3.order.every(function(v, i){ return v === i; })){
+        state.l3.done = true;
+        state.clues[2] = true;
+        setVerdict('ok','拼合完成。六块合起来，方井的秩序才出现：圆心、莲花、环绕、边框，一层套一层。');
+      } else {
+        setVerdict('', '交换完成，共 ' + state.l3.moves + ' 次。继续找错位的那几块。');
+      }
+    }
+    render();
+  }
+
+  function chooseRecord(id){
+    if(state.l4.done) return;
+    state.l4.chosen = id;
+    if(id === 'B'){
+      state.l4.done = true;
+      setVerdict('ok','对上了。方井、四层八瓣莲花、花心三兔、八身飞天——这正是隋代第407窟的井心。档案的最后两项，是位置与年代。');
+    } else if(id === 'A'){
+      setVerdict('no','九色鹿是本生故事画，靠横向长卷讲故事；这份档案的图像是方形窟顶，讲的是图案与秩序，不是叙事。');
+    } else {
+      setVerdict('no','第320窟的双飞天画在佛龛顶上，主角是两身对称的飞天；而这份档案的中心是莲花与三兔，飞天只是环绕者。');
+    }
+    render();
+  }
+
+  function nextLevel(){
+    if(state.level < 4){
+      state.level++;
+      setVerdict('', '');
+      render();
+      var wb = el('workbench');
+      if(wb && wb.scrollIntoView) wb.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else {
+      state.screen = 'ending';
+      state.endAt = Date.now();
+      render();
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function restart(){
+    var box = el('sources');
+    if(box){
+      box.hidden = true;
+      var sBtn = box.parentNode.querySelector('[data-act="sources"]');
+      if(sBtn){
+        sBtn.textContent = '查看完整档案';
+        sBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+    state = newState();
+    render();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function toggleSources(btn){
+    var box = el('sources');
+    var open = box.hidden;
+    box.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? '收起档案说明' : '查看完整档案';
+  }
+
+  document.addEventListener('click', function(e){
+    var node = e.target.closest('[data-act]');
+    if(!node) return;
+    var act = node.getAttribute('data-act');
+
+    if(act === 'start'){
+      state.screen = 'game';
+      state.level = 1;
+      state.startAt = Date.now();
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+    if(act === 'hint'){
+      if(!state.hintUsed[state.level]){
+        state.hints++;
+        state.hintUsed[state.level] = true;
+      }
+      render();
+      return;
+    }
+    if(act === 'hot') return clickHot(node.getAttribute('data-hot'));
+    if(act === 'pin') return clickPin(node.getAttribute('data-pin'));
+    if(act === 'piece') return clickPiece(Number(node.getAttribute('data-slot')));
+    if(act === 'ghost'){
+      state.l3.ghost = !state.l3.ghost;
+      render();
+      return;
+    }
+    if(act === 'record') return chooseRecord(node.getAttribute('data-rec'));
+    if(act === 'next') return nextLevel();
+    if(act === 'restart') return restart();
+    if(act === 'sources') return toggleSources(node);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
