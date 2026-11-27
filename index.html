@@ -321,6 +321,74 @@ a:hover{color:var(--paper)}
   .reveal{animation:none}
   *{transition:none!important}
 }
+/* ===== 多档案修订 ===== */
+.mast{position:relative;z-index:2}
+.workbench[hidden],.ending[hidden]{display:none}
+@media(min-width:880px){.end-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.94fr)}}
+
+/* ===== 终章 ===== */
+.final{padding:34px 0 56px}
+.final[hidden]{display:none}
+.final .stamp{display:inline-block;padding:5px 11px;border:1px solid var(--gold-deep);font:11px/1.3 var(--sans);letter-spacing:.18em;color:var(--gold)}
+.final h2{margin:18px 0 8px;font:600 clamp(26px,5vw,40px)/1.3 var(--serif);letter-spacing:.06em}
+.final .sub{margin:0 0 26px;font:12.5px/1.9 var(--sans);letter-spacing:.06em;color:var(--paper-dim)}
+.final .letter{
+  max-width:44em;margin:0 0 14px;padding:15px 18px;border-left:2px solid var(--gold-deep);
+  background:rgba(26,18,13,.5);font:13.5px/2 var(--sans);color:#b6a68c;
+}
+.final-body{max-width:44em;margin-top:30px}
+.final-body h3{margin:32px 0 12px;font:600 13px/1.4 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.final-body h3:first-child{margin-top:0}
+.final-body p{margin:0 0 16px;font-size:15.5px;line-height:2.05;color:#cbbc9f}
+.final-close{
+  margin:30px 0 0;padding:16px 0 0;border-top:1px solid var(--line-soft);
+  font-size:16px!important;line-height:1.95!important;color:#e6d7bb!important;letter-spacing:.02em;
+}
+.timeline{margin:6px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.timeline .row{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.timeline .row:last-child{border-bottom:0}
+.timeline b{font:600 12.5px/1.6 var(--sans);letter-spacing:.1em;color:var(--gold)}
+.timeline span{font:13px/1.9 var(--sans);color:#b6a68c}
+.final-plates{display:grid;gap:14px;margin:34px 0 0}
+@media(min-width:720px) and (max-width:1119px){.final-plates{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.final-inner{display:grid;gap:26px}
+@media(min-width:1120px){
+  .final-inner{grid-template-columns:minmax(0,1fr) 308px;gap:52px;align-items:start}
+  .final-side{position:sticky;top:26px}
+}
+.final-side .side-h{margin:0 0 12px;font:11px/1 var(--sans);letter-spacing:.18em;color:var(--gold-deep)}
+.final-side .final-plates{margin:0}
+.final-side .end-actions{flex-direction:column;align-items:stretch;margin-top:22px}
+.final-side .end-actions .btn{width:100%}
+.fp{display:block;padding:0;border:1px solid var(--line);background:var(--ink-2);text-align:left;transition:border-color .2s,background .2s}
+.fp:hover{border-color:var(--gold);background:var(--ink-3)}
+.fp img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;filter:saturate(1.1) brightness(1.04)}
+.fp .m{display:block;padding:11px 13px 13px}
+.fp .m b{display:block;font:600 14px/1.45 var(--serif);color:var(--paper);letter-spacing:.02em}
+.fp .m span{display:block;margin-top:5px;font:11.5px/1.75 var(--sans);color:#8f8271}
+.inline-btn{display:inline-block;margin-left:12px;min-height:0!important;padding:7px 13px!important;font-size:13px!important;vertical-align:middle}
+/* ===== 档案室 ===== */
+.hub{padding:34px 0 46px}
+.hub[hidden]{display:none}
+.hub-head{max-width:46em}
+.hub-head .stamp{display:inline-block;padding:5px 10px;border:1px solid var(--gold-deep);font:11px/1.3 var(--sans);letter-spacing:.18em;color:var(--gold)}
+.hub-head h2{margin:16px 0 12px;font:600 clamp(26px,4.8vw,40px)/1.3 var(--serif);letter-spacing:.04em}
+.hub-head p{margin:0 0 12px;font-size:15.5px;line-height:2.02;color:#cbbc9f}
+.hub-note{font:12.5px/1.9 var(--sans);color:#857766}
+.hub-grid{display:grid;gap:18px;margin-top:28px}
+@media(min-width:720px){.hub-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+.card{display:block;padding:0;border:1px solid var(--line);background:var(--ink-2);text-align:left;transition:border-color .2s,background .2s}
+.card:hover{border-color:var(--gold);background:var(--ink-3)}
+.card-thumb{position:relative;display:block;overflow:hidden;aspect-ratio:3/2;background:#0f0a08}
+.card-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(1.14) brightness(1.05);transition:transform .6s ease}
+.card:hover .card-thumb img{transform:scale(1.045)}
+.card-body{display:block;padding:15px 16px 17px}
+.card-code{display:block;font:11px/1 var(--sans);letter-spacing:.18em;color:var(--gold-deep)}
+.card-body strong{display:block;margin:9px 0 6px;font:600 17px/1.5 var(--serif);color:var(--paper);letter-spacing:.02em}
+.card-meta{display:block;font:12.5px/1.75 var(--sans);color:#9d8f7d}
+.card-state{display:block;margin-top:11px;font:11.5px/1.6 var(--sans);letter-spacing:.08em;color:#6f6354}
+.card.is-done .card-state{color:var(--gold)}
+.card.is-done .card-thumb::after{content:"已恢复";position:absolute;right:10px;top:10px;padding:3px 8px;background:rgba(23,16,12,.88);border:1px solid var(--gold);font:11px/1.2 var(--sans);letter-spacing:.12em;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -335,12 +403,12 @@ a:hover{color:var(--paper)}
       <h1>遗产密令</h1>
       <span class="lat">Heritage Archive</span>
     </div>
-    <div class="mast-mark">档案编号 DH-001</div>
-    <div class="mast-sub">敦煌莫高窟 · 窟顶藻井 · 一份记录散佚的图像档案</div>
+    <div class="mast-mark" id="mastMark">档案编号 DH-001</div>
+    <div class="mast-sub" id="mastSub">敦煌莫高窟 · 三份记录散佚的图像档案</div>
   </header>
   <div class="levels" id="levels" aria-hidden="true"></div>
 
-  <!-- ===== 视图：封面 ===== -->
+  <!-- ===== 封面 ===== -->
   <section class="cover" id="cover">
     <div class="cover-bg" aria-hidden="true"><img src="assets/backdrop.jpg" alt=""></div>
 
@@ -356,136 +424,297 @@ a:hover{color:var(--paper)}
     </div>
 
     <div class="cover-copy">
-      <span class="stamp reveal">案卷 DH-001 · 待重编</span>
+      <span class="stamp reveal">档案室 · 待重编</span>
       <h2 class="reveal" style="animation-delay:.12s">消失的纹样</h2>
-      <span class="lat reveal" style="animation-delay:.26s">Heritage Archive · Dunhuang · Cave 407</span>
-      <p class="lede reveal" style="animation-delay:.4s">底片柜最下层，抽出一张没有编号的玻璃底片。</p>
-      <p class="reveal" style="animation-delay:.62s">影像还在：一方覆斗形窟顶，一朵四层八瓣的大莲花，八身飞天绕着它飞。可它的著录卡是空的——纹样没有名字，颜料没有注记，六块底片散着顺序，出自哪一座洞窟，那一栏只画了一道横线。</p>
-      <p class="reveal" style="animation-delay:.84s">按规程，记录不全的档案必须重新调查。于是这张底片被放上观片台，编号 DH-001，交到你手上。</p>
+      <span class="lat reveal" style="animation-delay:.26s">Heritage Archive · Dunhuang</span>
+      <p class="lede reveal" style="animation-delay:.4s">底片柜最下层，抽出三张没有编号的玻璃底片。</p>
+      <p class="reveal" style="animation-delay:.62s">影像都还在：一方覆斗形窟顶的藻井；一面赭红色的横卷，画着一只白身花斑的鹿；一道窄得几乎容不下人的空白，四身飞天在里面互相追逐。可它们的著录卡全是空的——纹样没有名字，颜料没有注记，底片散着顺序，出自哪一座洞窟，那一栏只画了一道横线。</p>
+      <p class="reveal" style="animation-delay:.84s">按规程，记录不全的档案必须重新调查。三张底片被放上观片台，编号 DH-001 至 DH-003，交到你手上。先查哪一份，由你决定。</p>
       <div class="index reveal" style="animation-delay:1s">
-        <div><b>01</b><span>纹样 · 名称缺失</span><i>待恢复</i></div>
-        <div><b>02</b><span>色彩 · 颜料注记散佚</span><i>待恢复</i></div>
-        <div><b>03</b><span>图像 · 六块底片错序</span><i>待恢复</i></div>
-        <div><b>04</b><span>年代 · 窟号与年代空缺</span><i>待恢复</i></div>
+        <div><b>001</b><span>窟顶藻井 · 三兔共耳</span><i>待开启</i></div>
+        <div><b>002</b><span>西壁横卷 · 白鹿与赭红</span><i>待开启</i></div>
+        <div><b>003</b><span>南壁上沿 · 四身散花飞天</span><i>待开启</i></div>
       </div>
       <div class="reveal" style="animation-delay:1.16s">
-        <button class="btn" data-act="start">开始调查</button>
+        <button class="btn" data-act="start">进入档案室</button>
       </div>
-      <p class="small reveal" style="animation-delay:1.26s">四关 · 约 3–5 分钟 · 无需声音。每一条结论，都要从画面里重新看出来。</p>
+      <p class="small reveal" style="animation-delay:1.26s">三份档案 · 每份四关 · 约 4–6 分钟一份。每一条结论，都要从画面里重新看出来。</p>
     </div>
   </section>
 
-  <!-- ===== 视图：工作台 ===== -->
+  <!-- ===== 档案室：选择档案 ===== -->
+  <section class="hub" id="hub" hidden>
+    <div class="hub-head">
+      <span class="stamp">档案室 · Archive Room</span>
+      <h2>三份没有著录的底片</h2>
+      <p>每一份都缺同几样东西：纹样的名字、颜料的注记、图像的顺序、出自哪窟哪代。挑一份开始调查——四关走完，这份档案才算恢复。</p>
+      <p class="hub-note" id="hubNote"></p>
+    </div>
+    <div class="hub-grid" id="hubGrid"></div>
+  </section>
+
+  <!-- ===== 工作台 ===== -->
   <div class="workbench" id="workbench" hidden>
     <div class="task" id="task"></div>
     <div class="stage" id="stage"></div>
     <aside class="dossier" id="dossier"></aside>
   </div>
 
-  <!-- ===== 视图：结局 ===== -->
-  <section class="ending" id="ending" hidden>
-    <span class="end-badge">档案恢复成功</span>
-    <h2>三兔莲花纹藻井</h2>
-    <p class="end-sub">敦煌莫高窟第407窟 · 主室窟顶 · 隋</p>
-    <div class="end-grid">
-      <div class="end-photo">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="photo"><img src="assets/zaojing_full.jpg" alt="敦煌莫高窟第407窟三兔莲花纹藻井全景：方井中央为重层八瓣莲花，花心三兔共耳，四周八身飞天环绕，外围为菱格莲纹边饰"></div>
-        </div>
-        <p class="cap"><span>第407窟 三兔莲花纹藻井</span><span>敦煌研究院公开影像</span></p>
-      </div>
-      <div>
-        <dl class="facts">
-          <div><dt>名称</dt><dd>三兔莲花纹藻井，亦称「三兔共耳」</dd></div>
-          <div><dt>所在</dt><dd>莫高窟第407窟主室覆斗形窟顶，方井井心</dd></div>
-          <div><dt>年代</dt><dd>隋（581–618）。同类「三兔共耳」图案在莫高窟约二十座洞窟中出现，最早见于隋开皇四年（584）的第302窟</dd></div>
-          <div><dt>构图</dt><dd>方井中央绘四层八瓣大莲花，莲花四周八身飞天环绕飞行，或持莲花、或托花盘、或捧香炉、或舞锡杖；井心外缘为多层菱格莲花纹与垂幔纹边饰</dd></div>
-          <div><dt>纹样</dt><dd>花心三只兔子两两共用一耳，看似只有三耳；三耳构成等边三角形，三兔逆时针相逐、永远追不上彼此。兔与飞天、天花的旋转方向一致，静止的莲花也像在转</dd></div>
-          <div><dt>色彩</dt><dd>以矿物颜料为主：石青取自蓝铜矿，石绿取自孔雀石，红为赭石一类含铁颜料，白则来自高岭土、石膏或铅白，墨为炭黑。历经千年氧化与褪色，今日所见的颜色已不同于初绘</dd></div>
-          <div><dt>意义</dt><dd>藻井位居窟顶正中，如天穹华盖；莲花象征清净，「三」在中国传统中含完整、无尽的意味，兔则寄托瑞应与生生不息。同类三兔共耳图像亦见于中亚与欧洲的宗教建筑装饰，被视为丝绸之路文化交流的一个例证</dd></div>
-        </dl>
-        <p class="closing">你恢复的不只是一幅图像。方井、莲花、三只共用耳朵的兔子、环绕的飞天与收边的菱格纹，把隋代画工对天空的想象压缩进了一方窟顶。它也没有被封存在过去——颜料的褪色、图案的流布、一次又一次的拍摄与辨认，都是这段记忆仍在被阅读的证据。</p>
-        <p class="stats" id="stats"></p>
-        <div class="end-actions">
-          <button class="btn" data-act="restart">重新探索</button>
-          <button class="btn line" data-act="sources" aria-expanded="false" aria-controls="sources">查看完整档案</button>
-        </div>
-        <div class="sources" id="sources" hidden>
-          <h3>资料与图像出处</h3>
-          <ul>
-            <li><a href="https://www.dha.ac.cn/info/1425/3569.htm" target="_blank" rel="noopener">敦煌研究院 · 莫高窟第407窟</a>：窟形、藻井结构与三兔纹样的官方著录</li>
-            <li><a href="https://m.thepaper.cn/newsDetail_forward_21662488" target="_blank" rel="noopener">澎湃新闻 · 敦煌发布《兔年说兔：敦煌壁画里的「小白兔」》</a>：三兔共耳图案的构成与流布</li>
-            <li><a href="https://m.gmw.cn/2025-10/31/content_1304206740.htm" target="_blank" rel="noopener">光明网《何以中国·壁画里的中国：敦煌「三兔藻井」》</a>：第407窟藻井的时代与现状</li>
-            <li><a href="https://www.tkww.hk/epaper/view/newsDetail/mobile/1893002674757046272.html" target="_blank" rel="noopener">大公文汇《敦煌莫高窟：探密「三兔共耳」的千年联结》</a>：图案在丝绸之路上的跨文化出现</li>
-          </ul>
-          <p>本页为教学性互动作品。壁画影像取自敦煌研究院等机构公开的第407窟藻井资料，显示时对亮度与饱和度略有调整以便观察细节；关卡中的点击区域与色点是示意标注，不是文物著录的一部分。纹样、年代与文化解释均依上述公开资料整理，未作虚构。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ===== 结局 ===== -->
+  <section class="ending" id="ending" hidden></section>
+
+  <!-- ===== 终章：三份归批 ===== -->
+  <section class="final" id="final" hidden></section>
 </main>
 
 <script>
 (function(){
   'use strict';
 
-  var IMG_FULL = 'assets/zaojing_full.jpg';
+  /* ================= 档案数据 ================= */
 
-  /* ---------- 数据 ---------- */
+  var CASES = [
+    {
+      id:'dh001', code:'DH-001', plate:'PLATE 01',
+      title:'三兔莲花纹藻井', short:'三兔藻井',
+      cave:'第407窟', where:'主室覆斗形窟顶 · 方井井心', era:'隋',
+      thumbNote:'窟顶藻井',
+      img:{ src:'assets/zaojing_full.jpg', w:957, h:957,
+        cap:'第407窟 三兔莲花纹藻井',
+        alt:'敦煌莫高窟第407窟三兔莲花纹藻井：方井中央重层八瓣莲花，花心三兔共耳，四周八身飞天环绕，外围菱格莲纹边饰' },
+      detail:{ src:'assets/jingxin.jpg', w:1024, h:1020,
+        cap:'第407窟 井心（局部）',
+        alt:'第407窟井心特写：八瓣莲花、花心三兔，飞天飘带与地色清晰可辨' },
+      hotspots:[
+        { id:'petal',  l:43, t:19, w:14, h:9,  label:'区域 一' },
+        { id:'rabbit', l:40, t:41, w:20, h:16, label:'区域 二', ok:true },
+        { id:'apsara', l:66, t:9,  w:15, h:12, label:'区域 三' },
+        { id:'border', l:37, t:92, w:26, h:7,  label:'区域 四' }
+      ],
+      l1:{
+        body:'壁画被数字化成一张方井图，档案里只剩一段形状记录——请<b>点击你认为对应的那块画面</b>。点错会告诉你，那里画的究竟是什么。',
+        frag:'「……环形，三只同样的动物，两两共用一耳。看上去只有三只耳朵；跑起来，却像在转。」',
+        ok:'找到了：三兔共耳。三只兔子两两共用一耳，三耳连成一个等边三角形；它们逆时针相逐，永远追不上彼此。',
+        wrong:{
+          petal:'这是莲瓣。四层八瓣的大莲花托着花心，它是容器，不是被记录的那组纹样。',
+          apsara:'这是环绕莲花飞行的飞天。持花、托盘、捧炉、舞锡杖，衣带当风——档案里丢失的不是它。',
+          border:'这是井心外围的菱格莲花纹边饰，作用是把整幅图案收进方井的边框里。它属于边框，不属于井心。'
+        }
+      },
+      pins:[
+        { id:'blue',  x:10, y:78, name:'石青', where:'飞天飘带的蓝', tone:'偏冷', pc:'#3e6f8a' },
+        { id:'green', x:72, y:10, name:'石绿', where:'莲瓣背后的地色', tone:'偏黄绿', pc:'#527a58' },
+        { id:'white', x:28, y:38, name:'白',  where:'莲瓣与壁面的白', tone:'最亮', pc:'#e6dfcd' }
+      ],
+      colors:[
+        { pin:'green', name:'石绿', mineral:'孔雀石', pc:'#527a58',
+          frag:'「石绿：孔雀石研成的粉。画工把它整片铺在莲瓣背后的地色里，让白瓣从绿底上浮出来。」',
+          ok:'孔雀石磨的粉，多作花卉纹样的地色，是敦煌绿的主要来源。' },
+        { pin:'white', name:'白', mineral:'高岭土 · 石膏 · 铅白', pc:'#e6dfcd',
+          frag:'「白：莲瓣与壁面的白。敦煌的白不止一种——高岭土、石膏、铅白，都曾被磨成粉敷上壁面。」',
+          ok:'白的来源最杂，也最容易被当成「没有画」的地方。' },
+        { pin:'blue',  name:'石青', mineral:'蓝铜矿', pc:'#3e6f8a',
+          frag:'「石青：蓝铜矿研成的蓝。画工用它画飞天飘带与天空，千年后还留着一层发冷的蓝。」',
+          ok:'蓝铜矿比植物色耐久，却会在千年里失掉明度，所以今天看着比当年更沉。' }
+      ],
+      l3frag:'「底片六块，三列两行。复位之法：先找飞天的飘带，再看莲瓣的开合，最后校中心的圆。」',
+      l3ok:'拼合完成。六块合起来，方井的秩序才出现：圆心、莲花、环绕、边框，一层套一层。',
+      records:[
+        { id:'A', head:'北魏 · 第257窟', title:'《九色鹿王本生》', desc:'西壁中段的横卷式连环画，赭红底，画八个情节，由两端起、中间结束。' },
+        { id:'B', head:'隋 · 第407窟', title:'三兔莲花纹藻井', desc:'覆斗形窟顶的方井，井心为四层八瓣莲花，花心三兔共耳，八身飞天环绕飞行。', ok:true },
+        { id:'C', head:'盛唐 · 第320窟', title:'散花飞天（四身）', desc:'南壁说法图上部的四身飞天，两两相对，前一身回首散花。' }
+      ],
+      clues:[
+        { k:'线索一 · 圆心', t:'纹样不是边角的装饰。它被画在窟顶方井的最正中——整幅藻井的秩序，从这个圆心开始向外铺开。' },
+        { k:'线索二 · 矿物', t:'石青来自蓝铜矿，石绿来自孔雀石，都是矿石磨成的粉。它们比植物色更耐久，却也会氧化、褪色：你今天看到的颜色，是一件已经走过一千四百年的东西。' },
+        { k:'线索三 · 秩序', t:'方井、圆心、环绕的飞天、收边的菱格纹，一层套一层。局部只有放回原位才有意义——这是敦煌藻井的构图法。' }
+      ],
+      hints:{
+        1:'缩小范围：整幅方井的最中央，那朵大莲花的花心里有一个小圆。',
+        2:'先看色卡：蓝偏冷、绿偏黄、白最亮。三张残页的顺序和画面编号是错开的——顺着编号点，一定错。',
+        3:'先定四个角：左上角是一片蓝色飘带，右上角是飞天的头光。以它们为锚点推其他块。',
+        4:'回到三份线索：圆心上的三兔、矿石研磨的三色、方井层层收拢的秩序。'
+      },
+      facts:[
+        ['名称','三兔莲花纹藻井，亦称「三兔共耳」'],
+        ['所在','莫高窟第407窟主室覆斗形窟顶，方井井心'],
+        ['年代','隋（581–618）。同类「三兔共耳」图案在莫高窟约二十座洞窟中出现，最早见于隋开皇四年（584）的第302窟'],
+        ['构图','方井中央绘四层八瓣大莲花，莲花四周八身飞天环绕飞行，或持莲花、或托花盘、或捧香炉、或舞锡杖；井心外缘为多层菱格莲花纹与垂幔纹边饰'],
+        ['纹样','花心三只兔子两两共用一耳，看似只有三耳；三耳构成等边三角形，三兔逆时针相逐、永远追不上彼此。兔与飞天、天花的旋转方向一致，静止的莲花也像在转'],
+        ['色彩','以矿物颜料为主：石青取自蓝铜矿，石绿取自孔雀石，红为赭石一类含铁颜料，白则来自高岭土、石膏或铅白，墨为炭黑。历经千年氧化与褪色，今日所见的颜色已不同于初绘'],
+        ['意义','藻井位居窟顶正中，如天穹华盖；莲花象征清净，「三」在中国传统中含完整、无尽的意味，兔则寄托瑞应与生生不息。同类三兔共耳图像亦见于中亚与欧洲的宗教建筑装饰，被视为丝绸之路文化交流的一个例证']
+      ],
+      closing:'你恢复的不只是一幅图像。方井、莲花、三只共用耳朵的兔子、环绕的飞天与收边的菱格纹，把隋代画工对天空的想象压缩进了一方窟顶。它也没有被封存在过去——颜料的褪色、图案的流布、一次又一次的拍摄与辨认，都是这段记忆仍在被阅读的证据。',
+      sources:[
+        ['https://www.dha.ac.cn/info/1425/3569.htm','敦煌研究院 · 莫高窟第407窟','窟形、藻井结构与三兔纹样的官方著录'],
+        ['https://m.thepaper.cn/newsDetail_forward_21662488','澎湃新闻 · 敦煌发布《兔年说兔：敦煌壁画里的「小白兔」》','三兔共耳图案的构成与流布'],
+        ['https://m.gmw.cn/2025-10/31/content_1304206740.htm','光明网《何以中国·壁画里的中国：敦煌「三兔藻井」》','第407窟藻井的时代与现状'],
+        ['https://www.tkww.hk/epaper/view/newsDetail/mobile/1893002674757046272.html','大公文汇《敦煌莫高窟：探密「三兔共耳」的千年联结》','图案在丝绸之路上的跨文化出现']
+      ],
+      note:'壁画影像取自敦煌研究院等机构公开的第407窟藻井资料，显示时对亮度与饱和度略有调整以便观察细节；关卡中的点击区域与取样点是示意标注，不是文物著录的一部分。'
+    },
 
-  // 第一关：可点击区域（百分比定位，依据画面实测）
-  var HOTSPOTS = [
-    { id:'rabbit', l:40, t:41, w:20, h:16, label:'区域 一' },
-    { id:'petal',  l:43, t:19, w:14, h:9,  label:'区域 二' },
-    { id:'apsara', l:66, t:9,  w:15, h:12, label:'区域 三' },
-    { id:'border', l:37, t:92, w:26, h:7,  label:'区域 四' }
+    {
+      id:'dh002', code:'DH-002', plate:'PLATE 02',
+      title:'九色鹿王本生', short:'九色鹿',
+      cave:'第257窟', where:'主室西壁中段', era:'北魏',
+      thumbNote:'西壁横卷',
+      img:{ src:'assets/c257_full.jpg', w:1574, h:800,
+        cap:'第257窟 西壁中段 · 九色鹿王本生（局部）',
+        alt:'莫高窟第257窟西壁九色鹿王本生故事画：赭红底，白身花斑的九色鹿立于左侧，中间为骑马追鹿的国王一行，右侧为骑从，底部为三角形山峦' },
+      detail:{ src:'assets/c257_full.jpg', w:1574, h:800,
+        cap:'第257窟 西壁中段 · 九色鹿王本生',
+        alt:'莫高窟第257窟西壁九色鹿王本生故事画：赭红底，白身花斑的九色鹿、乘马追猎的国王一行、绿马骑从与底部的三角形山峦' },
+      hotspots:[
+        { id:'mountain', l:0,  t:32, w:9,  h:34, label:'区域 一' },
+        { id:'deer',     l:14, t:22, w:22, h:54, label:'区域 二', ok:true },
+        { id:'king',     l:38, t:16, w:16, h:36, label:'区域 三' },
+        { id:'rider',    l:61, t:20, w:18, h:34, label:'区域 四' }
+      ],
+      l1:{
+        body:'这一面西壁是一卷横着的故事画。档案只剩一段形状记录——请<b>点击你认为对应的那块画面</b>。点错会告诉你，那里画的是什么。',
+        frag:'「……一只鹿。白身，身上点着花斑，头上生角。它站在赭红的底色上，四周围着一圈三角形的山。」',
+        ok:'找到了：九色鹿。画工把它的身体留成白地，点上花斑，再添一对长角——整卷故事都从它开始。',
+        wrong:{
+          mountain:'这是衬景的山峦。汉晋以来的画法里，山水只用来分隔情节、串起人物，不是档案这一栏空着的东西。',
+          king:'这是率军围猎的国王一行。他们在故事里后到，是追鹿的人，不是被追的鹿。',
+          rider:'这是随行的骑从与坐骑。马画得极好——写实又夸张——可档案要记的不是马。'
+        }
+      },
+      pins:[
+        { id:'red',   x:42, y:52, name:'土红', where:'满壁的赭红地色', tone:'偏暖', pc:'#c3602f' },
+        { id:'green', x:40, y:20, name:'石绿', where:'三角形山峦的绿', tone:'偏黄绿', pc:'#85a872' },
+        { id:'white', x:22, y:48, name:'白',  where:'鹿身与壁面的白', tone:'最亮', pc:'#e7dab4' }
+      ],
+      colors:[
+        { pin:'red', name:'土红', mineral:'赭石一类含铁颜料', pc:'#c3602f',
+          frag:'「赭：铁红一类的土色。画工用它刷满整面西壁做底，人物、山峦、马匹都从这层红里浮出来。」',
+          ok:'赭红占了画面大半，也是这铺画里最稳定的一层——它不像蓝绿那样容易变色。' },
+        { pin:'green', name:'石绿', mineral:'孔雀石', pc:'#85a872',
+          frag:'「石绿：孔雀石研成的绿。山峦、飘带、马身都用它；绿压在红上，画面立刻有了冷热。」',
+          ok:'石绿多用在山水与飘带上，是北朝壁画里最跳的颜色之一。' },
+        { pin:'white', name:'白', mineral:'高岭土 · 石膏 · 铅白', pc:'#e7dab4',
+          frag:'「白：鹿身、头光、壁面的白。敦煌的白不止一种——高岭土、石膏、铅白，都曾被磨成粉敷上壁面。」',
+          ok:'鹿身大面积留白，只点花斑；白在这里既是颜色，也是让主角跳出来的办法。' }
+      ],
+      l3frag:'「底片六块，三列两行。复位之法：先认鹿的角与颈，再看山峦的走向，最后校赭红底的空处。」',
+      l3ok:'拼合完成。横卷一接起来，读法也出来了：故事从左右两端起，到中间收束。',
+      records:[
+        { id:'A', head:'隋 · 第407窟', title:'三兔莲花纹藻井', desc:'覆斗形窟顶的方井，井心四层八瓣莲花，花心三兔共耳，八身飞天环绕。' },
+        { id:'B', head:'北魏 · 第257窟', title:'《九色鹿王本生》', desc:'西壁中段的横卷式连环画，赭红底，八个情节，由两端起、中间结束。', ok:true },
+        { id:'C', head:'盛唐 · 第320窟', title:'散花飞天（四身）', desc:'南壁说法图上部的四身飞天，两两相对，前一身回首散花。' }
+      ],
+      clues:[
+        { k:'线索一 · 横卷', t:'这一铺不是一幅单景，而是一条横着的卷。八个情节按时间排开，读它不是从上到下，而是沿着画走。' },
+        { k:'线索二 · 赭红', t:'整面西壁先刷赭红做底，人物、马匹、山峦都从这层红里浮出来。汉晋以来的画法：人物动物为主，山水房宇只作衬景。' },
+        { k:'线索三 · 两端向中', t:'故事从左右两端同时开始，在中间结束——结局正对着观众。这种把高潮放在正中的构图，在当时的中国画里很少见。' }
+      ],
+      hints:{
+        1:'缩小范围：找一只四条腿站在地上的动物，不是人，也不是山。',
+        2:'先看色卡：红是地、绿是山、白是鹿身。三张残页的顺序和画面编号是错开的。',
+        3:'先定上下：鹿角在上沿，山峦在底部；再用赭红底的空处推中间两块。',
+        4:'三份线索：横卷的读法、赭红打底的画法、由两端向中间的次序。'
+      },
+      facts:[
+        ['名称','《九色鹿王本生》，亦称《鹿王本生图》'],
+        ['所在','莫高窟第257窟主室西壁中段，赭红底的故事画带'],
+        ['年代','北魏（386–534）。同窟南壁画沙弥守戒自杀因缘，北壁画须摩提女因缘'],
+        ['形制','中心塔柱窟。西、南、北三壁作三段布局：上段天宫伎乐，中段千佛，下部药叉，故事画带横贯其间'],
+        ['构图','横卷式连环画，高一米上下、长近四米；八个情节由左右两端起，在中间结束——结局放在正中'],
+        ['情节','溺人落水 → 九色鹿救起调达 → 调达跪谢 → 王后求鹿皮 → 调达告密 → 国王率军围猎 → 乌鸦叫醒鹿 → 鹿向国王陈情'],
+        ['画法','人物动物为主，山水、房宇、车马只作衬景，是汉晋传统画风在佛教壁画上的延续；马的刻画写实与夸张并用'],
+        ['色彩','赭红打底，石绿画山峦与飘带，鹿身留白点花斑，以墨线勾形。矿物颜料经千年氧化，色相已不同于初绘'],
+        ['影响','1981 年上海美术电影制片厂据此改编为动画片《九色鹿》']
+      ],
+      closing:'你找回的不只是一只鹿。整面西壁用赭红打底，把八个情节摊在一条横卷上：救人、谢恩、告密、围猎、陈情，从两端向中间收拢。山水只是分隔，人和动物才是主角——这套画法来自汉晋，被北魏的画工带进了佛经故事，成了莫高窟最早的一批连环画之一。',
+      sources:[
+        ['https://www.dha.ac.cn/info/1425/3548.htm','敦煌研究院 · 莫高窟第257窟','窟形、三段式壁画布局与九色鹿故事梗概'],
+        ['https://e-dunhuang.com/cave/10.0001/0001.0001.0257','数字敦煌 · 莫高窟第257窟','西壁中段故事画的八个情节与「由两端起、中间结束」的读法'],
+        ['https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/dhxjk/dhxj2008/0801pdf/080111.pdf','《敦煌莫高窟第257窟壁画〈鹿王本生〉释读》（2008）','画面尺寸（纵 96cm、横 385cm）与图像释读']
+      ],
+      note:'壁画影像取自敦煌研究院等机构公开的第257窟资料，显示时对亮度与饱和度略有调整以便观察细节；关卡中的点击区域与取样点是示意标注，不是文物著录的一部分。'
+    },
+
+    {
+      id:'dh003', code:'DH-003', plate:'PLATE 03',
+      title:'散花飞天（四身）', short:'四飞天',
+      cave:'第320窟', where:'主室南壁 · 释迦说法图上部', era:'盛唐',
+      thumbNote:'南壁上沿',
+      img:{ src:'assets/c320_full.jpg', w:1708, h:1280,
+        cap:'第320窟 南壁 · 说法图上部（四飞天）',
+        alt:'莫高窟第320窟南壁说法图上部：上沿窄空白里四身散花飞天两两相对，中部为华盖与莲蕾花雨，下方为说法会' },
+      detail:{ src:'assets/c320_full.jpg', w:1708, h:1280,
+        cap:'第320窟 南壁 · 说法图上部',
+        alt:'莫高窟第320窟南壁说法图上部：上沿窄空白里四身散花飞天两两相对，中部为华盖与莲蕾花雨，下方为说法会' },
+      hotspots:[
+        { id:'apsaraA', l:34, t:6,  w:13, h:26, label:'区域 一', ok:true },
+        { id:'cloud',   l:68, t:8,  w:12, h:12, label:'区域 二' },
+        { id:'apsaraB', l:49, t:6,  w:13, h:26, label:'区域 三', ok:true },
+        { id:'canopy',  l:44, t:26, w:11, h:16, label:'区域 四' },
+        { id:'lotus',   l:63, t:34, w:11, h:9,  label:'区域 五' }
+      ],
+      l1:{
+        body:'这段壁画的最上沿，留了一道窄得几乎容不下人的空白。档案只剩一段形状记录——请<b>点击你认为对应的那处画面</b>（画面里不止一处）。',
+        frag:'「……四身，两两相对。一身在前，一身在后；在前的回一下头，扬手散花。」',
+        ok:'找到了：飞天。它们不在画面正中，而在说法图最上沿那道狭窄的空白里——画工把有限的高度用成了天空。',
+        wrong:{
+          cloud:'这是流云。它让画面动起来，可档案这一栏记的是人。',
+          canopy:'这是主尊头顶的华盖与火焰宝珠，属于仪仗陈设。飞天是绕着它飞的，不是它。',
+          lotus:'这是散落的花雨与莲蕾，飞天扬手撒下来的花。花不是散花的人。'
+        }
+      },
+      pins:[
+        { id:'green', x:24, y:40, name:'石绿', where:'莲蕾与花雨的绿', tone:'偏冷绿', pc:'#79925d' },
+        { id:'red',   x:46, y:18, name:'土红', where:'飘带与身光的赭红', tone:'偏暖', pc:'#9b330d' },
+        { id:'white', x:84, y:12, name:'白',  where:'壁面与莲花的白', tone:'最亮', pc:'#dfe5d9' }
+      ],
+      colors:[
+        { pin:'green', name:'石绿', mineral:'孔雀石', pc:'#79925d',
+          frag:'「石绿：孔雀石研成的绿。莲蕾、花雨、华盖的装饰都用它，压在赭红上，整面墙就亮起来。」',
+          ok:'石绿在这幅里几乎铺满两侧，是盛唐壁画最见气派的颜色之一。' },
+        { pin:'red', name:'土红', mineral:'赭石 / 铁红', pc:'#9b330d',
+          frag:'「土红：铁红一类的土色。飘带、身光、华盖的弧都用它。有的地方千年后已经转成深褐，甚至发黑。」',
+          ok:'红色系最容易变——今天看到的深褐，往往已经不是当年画上去的那一层颜色。' },
+        { pin:'white', name:'白', mineral:'高岭土 · 石膏 · 铅白', pc:'#dfe5d9',
+          frag:'「白：壁面与莲花的白。盛唐的白常掺铅，铅变了色，留白的地方就生出灰黑的斑。」',
+          ok:'「黑飞天」的「黑」，一半来自这种变色：身光、飘带的深色里，藏着颜料的化学史。' }
+      ],
+      l3frag:'「底片六块，三列两行。复位之法：先认上沿的飞天与流云，再对华盖的弧线，最后看莲蕾的排布。」',
+      l3ok:'拼合完成。上沿的空白、中段的华盖、下方的莲蕾，三条横带一对齐，画面就站稳了。',
+      records:[
+        { id:'A', head:'北魏 · 第257窟', title:'《九色鹿王本生》', desc:'西壁中段的横卷式连环画，赭红底，八个情节，由两端起、中间结束。' },
+        { id:'B', head:'盛唐 · 第320窟', title:'散花飞天（四身）', desc:'南壁释迦说法图上部，四身两两相对，前一身回首散花；因变色俗称「黑飞天」。', ok:true },
+        { id:'C', head:'隋 · 第407窟', title:'三兔莲花纹藻井', desc:'覆斗形窟顶的方井，井心四层八瓣莲花，花心三兔共耳，八身飞天环绕。' }
+      ],
+      clues:[
+        { k:'线索一 · 上沿', t:'四身飞天挤在画面最上沿那道狭窄的空白里。不是空间够用，而是画工把有限的高度算准了：只留一条带，就够飞。' },
+        { k:'线索二 · 变色', t:'今日所见的深褐与发黑，多半不是初绘的颜色。含铅的颜料在千年里变了色，于是有了「黑飞天」这个名字。' },
+        { k:'线索三 · 对称', t:'两两相对，前一身回首，后一身紧随；对称里留出变化。这是唐代飞天最讲究的地方——飞也要飞成一个结构。' }
+      ],
+      hints:{
+        1:'往上找：它不在画面正中，而在最上沿那道狭窄的空白里，贴着边框飞。',
+        2:'先看色卡：绿偏冷、红偏暖、白最亮。三张残页的顺序与画面编号无关。',
+        3:'上沿是飞天与流云，中段是华盖的弧线与莲蕾；用这两条横带把六块对齐。',
+        4:'三份线索：上沿的空白、含铅颜料的变色、两两相对的对称。'
+      },
+      facts:[
+        ['名称','散花飞天（四身），因变色俗称「黑飞天」'],
+        ['所在','莫高窟第320窟主室南壁，释迦说法图上部'],
+        ['年代','盛唐（713–766）。此窟中唐、宋、元曾重修，是盛唐代表窟之一'],
+        ['构图','四身两两相对，从两侧飞向中央；前一身回首，与后一身呼应；巧妙利用了画面上沿狭窄的空白'],
+        ['现状','1924 年美国探险家华尔纳盗走南壁说法图两方；上部的四身飞天保存完好'],
+        ['色彩','石绿莲蕾与花雨、赭红飘带与身光、白色壁面；含铅颜料氧化后转深，故有「黑飞天」之称'],
+        ['意义','莫高窟唐代飞天的代表作之一，常书鸿等曾多次临摹']
+      ],
+      closing:'你找回的不只是四个人形。在窄得几乎容不下人的空白里，画工安排了两两相对的飞天：一身回首，一身紧随，长带把风写在墙上。它们的颜色已经不是当年的颜色——铅变了，红黑了，可飞行的姿态还在，而且仍在替这面墙呼吸。',
+      sources:[
+        ['https://e-dunhuang.com/cave/10.0001/0001.0001.0320','数字敦煌 · 莫高窟第320窟','南壁说法图与四身飞天的著录，「莫高窟唐代飞天的代表作之一」'],
+        ['https://m.thepaper.cn/newsDetail_forward_26501761','澎湃新闻《「沙漠中的画廊」——敦煌莫高窟第320窟》','四身飞天两两相对、前后呼应，以及氧化变色的描述'],
+        ['https://lib.tsinghua.edu.cn/arts/info/1034/9249.htm','清华大学图书馆 · 四飞天 莫高窟第320窟 盛唐','飞天的位置、散花与接引的姿态']
+      ],
+      note:'壁画影像取自敦煌研究院等机构公开的第320窟资料，显示时对亮度与饱和度略有调整以便观察细节；关卡中的点击区域与取样点是示意标注，不是文物著录的一部分。'
+    }
   ];
-
-  var HOT_WRONG = {
-    petal:  '这是重层八瓣莲花的一片花瓣。莲瓣围住了纹样，但纹样本身不在花瓣上——它还在更里面。',
-    apsara: '这是环绕莲花飞行的飞天。它是这幅藻井的另一位主角：持花、托盘、捧炉、舞锡杖，衣带当风。档案里丢失的不是它。',
-    border: '这是井心外围的菱格莲花纹边饰，作用是把整幅图案收进方井的边框里。它属于边框，不属于井心。'
-  };
-
-  // 第二关：三个取样点（坐标取自井心特写图的实测色域），编号在开局随机分配
-  var PINS = [
-    { id:'blue',  x:10, y:78, name:'石青', where:'飞天飘带的蓝', tone:'偏冷', pc:'#3e6f8a' },
-    { id:'green', x:72, y:10, name:'石绿', where:'莲瓣背后的地色', tone:'偏黄绿', pc:'#527a58' },
-    { id:'white', x:28, y:38, name:'白',  where:'莲瓣与壁面的白', tone:'最亮', pc:'#e6dfcd' }
-  ];
-
-  // 三张残页：顺序在开局打乱，与画面编号无关
-  var COLOR_ROUNDS = [
-    { pin:'green', name:'石绿', mineral:'孔雀石', pc:'#527a58',
-      frag:'「石绿：孔雀石研成的粉。画工把它整片铺在莲瓣背后的地色里，让白瓣从绿底上浮出来。」',
-      ok:'孔雀石磨的粉，多作花卉纹样的地色，是敦煌绿的主要来源。' },
-    { pin:'white', name:'白', mineral:'高岭土 · 石膏 · 铅白', pc:'#e6dfcd',
-      frag:'「白：莲瓣与壁面的白。敦煌的白不止一种——高岭土、石膏、铅白，都曾被磨成粉敷上壁面。」',
-      ok:'白的来源最杂，也最容易被当成「没有画」的地方。' },
-    { pin:'blue',  name:'石青', mineral:'蓝铜矿', pc:'#3e6f8a',
-      frag:'「石青：蓝铜矿研成的蓝。画工用它画飞天飘带与天空，千年后还留着一层发冷的蓝。」',
-      ok:'蓝铜矿比植物色耐久，却会在千年里失掉明度，所以今天看着比当年更沉。' }
-  ];
-
-  var CLUES = [
-    { k:'线索一 · 圆心', t:'纹样不是边角的装饰。它被画在窟顶方井的最正中——整幅藻井的秩序，从这个圆心开始向外铺开。' },
-    { k:'线索二 · 矿物', t:'石青来自蓝铜矿，石绿来自孔雀石，都是矿石磨成的粉。它们比植物色更耐久，却也会氧化、褪色：你今天看到的颜色，是一件已经走过一千四百年的东西。' },
-    { k:'线索三 · 秩序', t:'方井、圆心、环绕的飞天、收边的菱格纹，一层套一层。局部只有放回原位才有意义——这是敦煌藻井的构图法。' }
-  ];
-
-  var RECORDS = [
-    { id:'A', head:'北魏 · 第257窟', title:'《九色鹿本生》', desc:'横卷式故事画，画在壁面，按横向展开讲述九色鹿、溺人与国王的因缘。' },
-    { id:'B', head:'隋 · 第407窟', title:'三兔莲花纹藻井', desc:'覆斗形窟顶的方井，井心为四层八瓣莲花，花心三兔共耳，八身飞天环绕飞行。' },
-    { id:'C', head:'盛唐 · 第320窟', title:'龛顶双飞天', desc:'画在佛龛顶部，两身飞天对称回身、长带翻卷，是唐代飞天的代表。' }
-  ];
-
-  var HINTS = {
-    1:'缩小范围：整幅方井的最中央，那朵大莲花的花心里有一个小圆。',
-    2:'先看色卡：蓝偏冷、绿偏黄、白最亮。三张残页的顺序和画面编号是错开的——顺着编号点，一定错。',
-    3:'先定四个角：左上角是一片蓝色飘带，右上角是飞天的头光。以它们为锚点推其他块。',
-    4:'回到三份线索：圆心上的三兔、矿石研磨的三色、方井层层收拢的秩序。'
-  };
 
   var NEXT_LABEL = {
     1:'继续：档案 02 · 色彩',
@@ -493,29 +722,36 @@ a:hover{color:var(--paper)}
     3:'继续：档案 04 · 年代',
     4:'打开最终档案'
   };
+  var LEVEL_NAME = ['纹样','色彩','图像','年代'];
+
+  /* ================= 状态 ================= */
 
   var state = newState();
 
   function newState(){
-    var marks = shuffleArr(['①','②','③']), mk = {};
-    for(var i = 0; i < PINS.length; i++) mk[PINS[i].id] = marks[i];
     return {
       screen:'cover',
+      ci:0,
       level:1,
       clues:[false,false,false],
       hints:0,
-      hintUsed:{ 1:false, 2:false, 3:false, 4:false },
-      startAt:0,
-      endAt:0,
-      l1:{ found:false },
-      l2:{ round:0, wrong:0, seq:shuffleArr([0,1,2]), marks:mk },
-      l3:{ order:[0,1,2,3,4,5], sel:null, moves:0, done:false, ghost:false },
-      l4:{ chosen:null, done:false },
+      hintUsed:{1:false,2:false,3:false,4:false},
+      caseStart:0,
+      done:{},
+      l1:{found:false},
+      l2:{round:0,wrong:0,seq:[0,1,2],marks:{}},
+      l3:{order:[0,1,2,3,4,5],sel:null,moves:0,done:false,ghost:false},
+      l4:{chosen:null,done:false},
       mounted:0,
-      verdict:{ tone:'', text:'' }
+      verdict:{tone:'',text:''}
     };
   }
 
+  /* ================= 工具 ================= */
+
+  function el(id){ return document.getElementById(id); }
+  function C(){ return CASES[state.ci]; }
+  function setVerdict(tone, text){ state.verdict = { tone:tone, text:text }; }
   function shuffleArr(a){
     var r = a.slice();
     for(var i = r.length - 1; i > 0; i--){
@@ -524,84 +760,107 @@ a:hover{color:var(--paper)}
     }
     return r;
   }
-
-  function curColor(){ return COLOR_ROUNDS[state.l2.seq[state.l2.round]]; }
-
-  function swatchesHTML(){
-    var s = '';
-    for(var i = 0; i < COLOR_ROUNDS.length; i++){
-      s += '<span class="swatch-chip"><span class="swatch" style="--c:' + COLOR_ROUNDS[i].pc + '"></span>' + COLOR_ROUNDS[i].name + '</span>';
-    }
-    return s;
+  function misplaces(order){
+    var n = 0;
+    for(var i = 0; i < order.length; i++){ if(order[i] !== i) n++; }
+    return n;
   }
-
-  /* ---------- 小工具 ---------- */
-  function el(id){ return document.getElementById(id); }
-  function setVerdict(tone, text){ state.verdict = { tone:tone, text:text }; }
-
+  function scrambledOrder(){
+    var base = [0,1,2,3,4,5], order, tries = 0;
+    do { order = shuffleArr(base); tries++; } while(tries < 40 && (misplaces(order) < 4 || misplaces(order) === 0));
+    if(misplaces(order) < 4) order = [3,4,5,0,1,2];
+    return order;
+  }
+  function curColor(){ return C().colors[state.l2.seq[state.l2.round]]; }
   function verdictHTML(){
     var cls = 'verdict' + (state.verdict.tone ? ' is-' + state.verdict.tone : '');
     var text = state.verdict.text || '在左侧任务与画面之间来回看：每一条结论都要从图像里看出依据。';
     return '<p class="' + cls + '" role="status" aria-live="polite">' + text + '</p>';
   }
-
+  function cornersHTML(){
+    return '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>';
+  }
+  function swatchesHTML(){
+    var s = '';
+    C().colors.forEach(function(c){
+      s += '<span class="swatch-chip"><span class="swatch" style="--c:' + c.pc + '"></span>' + c.name + '</span>';
+    });
+    return s;
+  }
+  function photoStyle(im){ return 'aspect-ratio:' + im.w + '/' + im.h; }
   function levelDone(lv){
     if(lv === 1) return state.l1.found;
-    if(lv === 2) return state.l2.round >= COLOR_ROUNDS.length;
+    if(lv === 2) return state.l2.round >= C().colors.length;
     if(lv === 3) return state.l3.done;
     if(lv === 4) return state.l4.done;
     return false;
   }
-
-  /* ---------- 关卡索引 ---------- */
-  function renderLevels(){
-    var names = ['01 纹样','02 色彩','03 图像','04 年代'];
-    var html = '';
-    for(var i = 0; i < names.length; i++){
-      var idx = i + 1, cls = 'lv';
-      if(state.screen === 'ending' || idx < state.level) cls += ' is-done';
-      else if(state.screen === 'game' && idx === state.level) cls += ' is-active';
-      html += '<span class="' + cls + '"><i></i>' + names[i] + '</span>';
-    }
-    el('levels').innerHTML = html;
+  function nextBtn(){
+    if(!levelDone(state.level)) return '';
+    return '<div class="next-row"><button class="btn" data-act="next">' + NEXT_LABEL[state.level] + '</button></div>';
+  }
+  function doneCount(){
+    var n = 0;
+    for(var k in state.done){ if(state.done[k]) n++; }
+    return n;
   }
 
-  /* ---------- 左栏 ---------- */
+  /* ================= 进入某一档案 ================= */
+
+  function enterCase(i){
+    state.ci = i;
+    var c = C();
+    state.level = 1;
+    state.clues = [false,false,false];
+    state.hints = 0;
+    state.hintUsed = {1:false,2:false,3:false,4:false};
+    state.l1 = { found:false };
+    var marks = shuffleArr(['①','②','③']), mk = {};
+    c.pins.forEach(function(p, idx){ mk[p.id] = marks[idx]; });
+    state.l2 = { round:0, wrong:0, seq:shuffleArr([0,1,2]), marks:mk };
+    state.l3 = { order:scrambledOrder(), sel:null, moves:0, done:false, ghost:false };
+    state.l4 = { chosen:null, done:false };
+    state.caseStart = Date.now();
+    state.mounted = 0;
+    state.screen = 'game';
+    setVerdict('', '');
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  /* ================= 左栏：任务 ================= */
+
   function renderTask(){
-    var done = levelDone(state.level);
-    var used = state.hintUsed[state.level];
-    var head = '', title = '', body = '', frag = '';
+    var c = C(), done = levelDone(state.level), used = state.hintUsed[state.level];
+    var head = '档案 ' + String(state.level).padStart(2,'0') + ' / 04 · ' + LEVEL_NAME[state.level - 1];
+    var title, body, frag;
 
     if(state.level === 1){
-      head  = '档案 01 / 04 · 纹样';
       title = '寻找失记的纹样';
-      body  = '壁画被数字化成一张方井图。档案里只剩一段形状记录——请<b>点击你认为对应的那块画面</b>。点错会告诉你，那里画的究竟是什么。';
-      frag  = '<div class="frag"><p class="frag-k">残页 07 · 纹样条目</p><p>「……环形，三只同样的动物，两两共用一耳。看上去只有三只耳朵；跑起来，却像在转。」</p></div>';
+      body  = c.l1.body;
+      frag  = '<div class="frag"><p class="frag-k">残页 · 纹样条目</p><p>' + c.l1.frag + '</p></div>';
     } else if(state.level === 2){
       var cur = curColor();
-      head  = '档案 02 / 04 · 色彩';
       title = '复原颜料注记';
       body  = '三张残页的顺序已经乱了，画面上的取样点也只是随手编号，两者没有对应关系。<b>把色卡贴到画面上比色相</b>，点颜色最接近的那一处——顺着编号点，只会一直取错样。';
       frag  = cur
         ? '<div class="frag"><p class="frag-k">散页 · 色彩注记 ' + (state.l2.round + 1) + ' / 3</p><p>' + cur.frag + '</p>' +
           '<p class="swatch-row"><span class="swatch" style="--c:' + cur.pc + '"></span><span class="swatch-t">色卡 · ' + cur.name + '（' + cur.mineral + '）<br>待归位：在画面上找出这一色</span></p></div>'
-        : '<div class="frag"><p class="frag-k">散页 · 色彩注记</p><p>三张注记已经归位。矿物色比纸上的名字更沉——它们在这面墙上已经待了一千四百年。</p>' +
+        : '<div class="frag"><p class="frag-k">散页 · 色彩注记</p><p>三张注记已经归位。矿物色比纸上的名字更沉——它们在这面墙上已经待了一千多年。</p>' +
           '<p class="swatch-row">' + swatchesHTML() + '</p></div>';
     } else if(state.level === 3){
-      head  = '档案 03 / 04 · 图像';
       title = '拼合残缺底片';
-      body  = '六块底片被打散，顺序全乱了。<b>点击两块就能交换位置</b>，把井心拼回原样。看不清时可以对照片原图。';
-      frag  = '<div class="frag"><p class="frag-k">残页 12 · 装裱说明</p><p>「底片六块，三列两行。复位之法：先找飞天的飘带，再看莲瓣的开合，最后校中心的圆。」</p></div>';
+      body  = '六块底片被打散，顺序全乱了。<b>点击两块就能交换位置</b>，把画面拼回原样。看不清时可以对照片原图。';
+      frag  = '<div class="frag"><p class="frag-k">残页 · 装裱说明</p><p>' + c.l3frag + '</p></div>';
     } else {
-      head  = '档案 04 / 04 · 年代';
       title = '破解最终密令';
-      body  = '三份线索已经归位。现在，把这份档案放回它应该在的地方——<b>选出与之相符的另一份著录</b>。';
-      frag  = '<div class="frag"><p class="frag-k">残页 14 · 待填栏位</p><p>「出处：窟号 ____　题材 ____　年代 ____」<br>方井、莲花、三兔、飞天——四条依据，缺一不可。</p></div>';
+      body  = '三份线索已经归位。现在，把这份档案放回它应该在的地方——<b>选出与之相符的那一份著录</b>。';
+      frag  = '<div class="frag"><p class="frag-k">残页 · 待填栏位</p><p>「出处：窟号 ____　题材 ____　年代 ____」<br>纹样、色彩、构图都在画面里，三条依据，缺一不可。</p></div>';
     }
 
     var foot = done
       ? '<p class="hint-slot">本关已归档。继续的入口在画面下方。</p>'
-      : '<button class="ghost" data-act="hint">提示</button><p class="hint-slot">' + (used ? HINTS[state.level] : '') + '</p>';
+      : '<button class="ghost" data-act="hint">提示</button><p class="hint-slot">' + (used ? c.hints[state.level] : '') + '</p>';
 
     el('task').innerHTML =
       '<div class="task-id">' + head + '</div>' +
@@ -610,93 +869,84 @@ a:hover{color:var(--paper)}
       frag + foot;
   }
 
-  /* ---------- 中栏 ---------- */
-  function cornersHTML(){
-    return '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>';
-  }
-
-  function nextBtn(){
-    if(!levelDone(state.level)) return '';
-    return '<div class="next-row"><button class="btn" data-act="next">' + NEXT_LABEL[state.level] + '</button></div>';
-  }
+  /* ================= 中栏：画面 ================= */
 
   function stageL1(){
-    var found = state.l1.found, hots = '';
-    for(var i = 0; i < HOTSPOTS.length; i++){
-      var h = HOTSPOTS[i];
-      var isRight = h.id === 'rabbit';
+    var c = C(), found = state.l1.found, hots = '';
+    c.hotspots.forEach(function(h){
+      var isRight = !!h.ok;
       var cls = 'hot' + (found && isRight ? ' is-found' : '');
-      var tag = isRight ? '<span class="tag"' + (found ? '' : ' hidden') + '>三兔共耳</span>' : '';
+      var tag = isRight ? '<span class="tag"' + (found ? '' : ' hidden') + '>' + c.short + '</span>' : '';
       hots += '<button class="' + cls + '" style="--l:' + h.l + '%;--t:' + h.t + '%;--w:' + h.w + '%;--h:' + h.h + '%" ' +
               'data-act="hot" data-hot="' + h.id + '" aria-label="' + h.label + '">' + tag + '</button>';
-    }
+    });
     return '' +
       '<div class="frame">' + cornersHTML() +
-        '<div class="photo is-inspect"><img src="' + IMG_FULL + '" alt="敦煌莫高窟第407窟三兔莲花纹藻井：方井中央重层八瓣莲花，花心三兔共耳，四周飞天环绕">' + hots + '</div>' +
+        '<div class="photo is-inspect" data-act="miss" style="' + photoStyle(c.img) + '"><img src="' + c.img.src + '" alt="' + c.img.alt + '">' + hots + '</div>' +
       '</div>' +
-      '<p class="cap"><span>第407窟 三兔莲花纹藻井</span><span>' + (found ? '已定位纹样' : '点击画面寻找纹样') + '</span></p>' +
+      '<p class="cap"><span>' + c.img.cap + '</span><span>' + (found ? '已定位纹样' : '点击画面寻找纹样') + '</span></p>' +
       verdictHTML() + nextBtn();
   }
 
   function stageL2(){
-    var solvedPins = {};
-    for(var i = 0; i < state.l2.round; i++) solvedPins[COLOR_ROUNDS[state.l2.seq[i]].pin] = true;
+    var c = C(), solvedPins = {};
+    for(var i = 0; i < state.l2.round; i++){ solvedPins[c.colors[state.l2.seq[i]].pin] = true; }
     var pins = '';
-    for(var j = 0; j < PINS.length; j++){
-      var p = PINS[j], solved = !!solvedPins[p.id], mk = state.l2.marks[p.id] || '';
+    c.pins.forEach(function(p){
+      var solved = !!solvedPins[p.id], mk = state.l2.marks[p.id] || '';
       pins += '<button class="pin' + (solved ? ' is-solved' : '') + '" style="--x:' + p.x + '%;--y:' + p.y + '%;' + (solved ? '--pc:' + p.pc + ';' : '') + '" ' +
               'data-act="pin" data-pin="' + p.id + '" aria-label="取样点 ' + mk + '">' +
               '<i>' + mk + '</i>' + (solved ? '<span class="pin-tag">' + p.name + '</span>' : '') + '</button>';
-    }
+    });
     return '' +
       '<div class="frame">' + cornersHTML() +
-        '<div class="photo"><img src="assets/jingxin.jpg" alt="第407窟井心特写：八瓣莲花、花心三兔，飞天飘带与地色清晰可辨">' + pins + '</div>' +
+        '<div class="photo" style="' + photoStyle(c.detail) + '"><img src="' + c.detail.src + '" alt="' + c.detail.alt + '">' + pins + '</div>' +
       '</div>' +
-      '<p class="cap"><span>第407窟 井心（局部）</span><span>已录 ' + state.l2.round + ' / 3 种矿物色</span></p>' +
+      '<p class="cap"><span>' + c.detail.cap + '</span><span>已录 ' + state.l2.round + ' / 3 种矿物色</span></p>' +
       verdictHTML() + nextBtn();
   }
 
   function stageL3(){
-    var body;
+    var c = C(), body;
     if(state.l3.done){
-      body = '<div class="photo"><img src="' + IMG_FULL + '" alt="拼合完成的三兔莲花纹藻井全图"></div>';
+      body = '<div class="photo" style="' + photoStyle(c.img) + '"><img src="' + c.img.src + '" alt="' + c.img.cap + '"></div>';
     } else {
       var pieces = '';
       for(var s = 0; s < 6; s++){
         var p = state.l3.order[s];
         var col = p % 3, row = (p - col) / 3;
         var sel = state.l3.sel === s ? ' is-sel' : '';
-        pieces += '<button class="piece' + sel + '" style="background-position:' + (col * 50) + '% ' + (row * 100) + '%" ' +
+        pieces += '<button class="piece' + sel + '" style="background-image:url(' + "'" + c.img.src + "'" + ');background-position:' + (col * 50) + '% ' + (row * 100) + '%" ' +
                   'data-act="piece" data-slot="' + s + '" aria-label="拼图第 ' + (s + 1) + ' 格，底片第 ' + (p + 1) + ' 块"><span class="n">' + (s + 1) + '</span></button>';
       }
       body = '<div class="puzzle">' + pieces + '</div>' +
-             '<div class="ghost-layer' + (state.l3.ghost ? ' is-on' : '') + '"><img src="' + IMG_FULL + '" alt=""></div>';
+             '<div class="ghost-layer' + (state.l3.ghost ? ' is-on' : '') + '"><img src="' + c.img.src + '" alt=""></div>';
     }
     var ghostBtn = state.l3.done ? '' :
       '<button class="ghost" data-act="ghost" style="min-height:40px;margin-top:12px">' + (state.l3.ghost ? '关闭对照' : '对照原图') + '</button>';
 
     return '' +
       '<div class="frame">' + cornersHTML() +
-        '<div class="photo">' + body + '</div>' +
+        '<div class="photo" style="' + photoStyle(c.img) + '">' + body + '</div>' +
       '</div>' +
       '<div class="cap"><span>六块底片 · 三列两行</span><span>' + (state.l3.done ? '已拼合 · ' + state.l3.moves + ' 次交换' : '点击两块交换位置') + '</span></div>' +
       ghostBtn + verdictHTML() + nextBtn();
   }
 
   function stageL4(){
-    var recs = '';
-    for(var i = 0; i < RECORDS.length; i++){
-      var r = RECORDS[i], cls = 'rec';
-      if(state.l4.chosen === r.id) cls += r.id === 'B' ? ' is-right' : ' is-wrong';
+    var c = C(), recs = '';
+    c.records.forEach(function(r){
+      var cls = 'rec';
+      if(state.l4.chosen === r.id) cls += r.ok ? ' is-right' : ' is-wrong';
       recs += '<button class="' + cls + '" data-act="record" data-rec="' + r.id + '"' + (state.l4.done ? ' disabled' : '') + '>' +
               '<span class="rec-id">' + r.id + '</span>' +
               '<span class="rec-main"><strong>' + r.head + ' · ' + r.title + '</strong><span>' + r.desc + '</span></span>' +
               '</button>';
-    }
+    });
     return '' +
       '<div class="split">' +
         '<div class="frame">' + cornersHTML() +
-          '<div class="photo"><img src="' + IMG_FULL + '" alt="待核对的三兔莲花纹藻井全图"></div>' +
+          '<div class="photo" style="' + photoStyle(c.img) + '"><img src="' + c.img.src + '" alt="待核对的画面：' + c.img.cap + '"></div>' +
         '</div>' +
         '<div>' +
           '<p class="frag-k" style="margin-bottom:10px">候选著录 · 三选一</p>' +
@@ -706,131 +956,253 @@ a:hover{color:var(--paper)}
       '</div>';
   }
 
-  function isSorted(a){
-    for(var i = 0; i < a.length; i++){
-      if(a[i] !== i) return false;
-    }
-    return true;
-  }
-
-  function misplacedCount(a){
-    var n = 0;
-    for(var i = 0; i < a.length; i++){
-      if(a[i] !== i) n++;
-    }
-    return n;
-  }
-
-  // 打乱底片：保证不是原序，且至少 4 处错位（至少两次交换才可能复位）
-  function shufflePuzzle(){
-    var a = [0,1,2,3,4,5], guard = 0;
-    do {
-      a = [0,1,2,3,4,5];
-      for(var i = a.length - 1; i > 0; i--){
-        var j = Math.floor(Math.random() * (i + 1));
-        var t = a[i];
-        a[i] = a[j];
-        a[j] = t;
-      }
-      guard++;
-    } while((isSorted(a) || misplacedCount(a) < 4) && guard < 40);
-    if(isSorted(a) || misplacedCount(a) < 4) a = [3,4,5,0,1,2];
-    state.l3.order = a;
-    state.l3.sel = null;
-    state.l3.ghost = false;
-    state.l3.moves = 0;
-    state.l3.done = false;
-  }
-
   function renderStage(){
     var animate = state.mounted !== state.level;
     state.mounted = state.level;
-    if(state.level === 3 && !state.l3.done && isSorted(state.l3.order)) shufflePuzzle();
-    el('stage').innerHTML =
-      state.level === 1 ? stageL1() :
-      state.level === 2 ? stageL2() :
-      state.level === 3 ? stageL3() : stageL4();
-    var stage = el('stage');
-    stage.classList.remove('fade-in');
+    var html = state.level === 1 ? stageL1() :
+               state.level === 2 ? stageL2() :
+               state.level === 3 ? stageL3() : stageL4();
+    el('stage').innerHTML = html;
     if(animate){
-      void stage.offsetWidth;
-      stage.classList.add('fade-in');
+      var st = el('stage');
+      st.classList.remove('fade-in');
+      void st.offsetWidth;
+      st.classList.add('fade-in');
     }
   }
 
-  /* ---------- 右栏 ---------- */
+  /* ================= 右栏：档案袋 ================= */
+
   function renderDossier(){
-    var cn = ['线索 一','线索 二','线索 三'];
-    var items = '';
-    for(var i = 0; i < 3; i++){
-      if(state.clues[i]){
-        items += '<article class="clue"><span class="clue-n">' + CLUES[i].k + '</span><p>' + CLUES[i].t + '</p></article>';
-      } else {
-        items += '<div class="clue is-locked"><span class="clue-n">' + cn[i] + '</span><span class="clue-empty">未恢复</span></div>';
-      }
-    }
-    var count = state.clues.filter(Boolean).length;
-    el('dossier').innerHTML =
-      '<h3>档案袋</h3>' + items +
-      '<p class="foot">已收录 ' + count + ' / 3 条线索<br>提示调用 ' + state.hints + ' 次</p>';
+    var c = C(), got = 0, html = '<h3>档案袋 · ' + c.code + '</h3>';
+    c.clues.forEach(function(cl, i){
+      var open = state.clues[i];
+      if(open) got++;
+      html += '<div class="clue' + (open ? '' : ' is-locked') + '">' +
+                '<span class="clue-n">' + cl.k + '</span>' +
+                (open ? '<p>' + cl.t + '</p>' : '<span class="clue-empty">未恢复 · 完成第 ' + (i + 1) + ' 关后归档</span>') +
+              '</div>';
+    });
+    html += '<p class="foot">已收录 ' + got + ' / 3 条线索<br>提示调用 ' + state.hints + ' 次</p>';
+    el('dossier').innerHTML = html;
   }
 
-  /* ---------- 结局 ---------- */
-  function statsLine(){
-    var mins = state.startAt && state.endAt ? Math.max(1, Math.round((state.endAt - state.startAt) / 60000)) : 1;
-    return '调查记录 · 拼图交换 ' + state.l3.moves + ' 次 · 提示 ' + state.hints + ' 次 · 用时约 ' + mins + ' 分钟';
+  /* ================= 档案室 ================= */
+
+  function renderHub(){
+    var grid = '';
+    CASES.forEach(function(c, i){
+      var done = !!state.done[c.id];
+      grid += '<button class="card' + (done ? ' is-done' : '') + '" data-act="pick" data-case="' + i + '">' +
+                '<span class="card-thumb"><img src="' + c.img.src + '" alt="' + c.img.cap + '"></span>' +
+                '<span class="card-body">' +
+                  '<span class="card-code">' + c.code + ' · ' + c.plate + '</span>' +
+                  '<strong>' + c.title + '</strong>' +
+                  '<span class="card-meta">莫高窟' + c.cave + ' · ' + c.where + ' · ' + c.era + '</span>' +
+                  '<span class="card-state">' + (done ? '已恢复 · 可重查' : '未开启 · 四关待办') + '</span>' +
+                '</span>' +
+              '</button>';
+    });
+    el('hubGrid').innerHTML = grid;
+    var n = doneCount();
+    el('hubNote').innerHTML = n >= 3
+      ? '三份档案全部恢复。柜门还开着——最后一页在终章。<button class="btn line inline-btn" data-act="final">打开终章</button>'
+      : '已恢复 ' + n + ' / 3 份。每一份走完四关，右栏的三条线索才会全部归档。';
   }
+
+  /* ================= 结局 ================= */
+
+  function statsText(){
+    var c = C();
+    var mins = state.caseStart ? Math.max(1, Math.round((Date.now() - state.caseStart) / 60000)) : 1;
+    return '用时约 ' + mins + ' 分钟 · 提示调用 ' + state.hints + ' 次 · 色彩误判 ' + state.l2.wrong + ' 次 · 拼图交换 ' + state.l3.moves + ' 次 · 全库 ' + doneCount() + ' / 3 份已恢复';
+  }
+
+  function renderEnding(){
+    var c = C();
+    var finalBtn = doneCount() >= 3 ? '<button class="btn" data-act="final">打开终章 · 三份归批</button>' : '';
+    var facts = '<dl class="facts">';
+    c.facts.forEach(function(f){ facts += '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; });
+    facts += '</dl>';
+
+    var sources = '<div class="sources" id="sources" hidden><h3>资料与图像出处</h3><ul>';    c.sources.forEach(function(s){
+      sources += '<li><a href="' + s[0] + '" target="_blank" rel="noopener">' + s[1] + '</a>：' + s[2] + '</li>';
+    });
+    sources += '</ul><p>本页为教学性互动作品。' + c.note + '纹样、年代与文化解释均依上述公开资料整理，未作虚构。</p></div>';
+
+    el('ending').innerHTML =
+      '<span class="end-badge">档案恢复成功</span>' +
+      '<h2>' + c.title + '</h2>' +
+      '<p class="end-sub">敦煌莫高窟' + c.cave + ' · ' + c.where + ' · ' + c.era + '</p>' +
+      '<div class="end-grid">' +
+        '<div class="end-photo">' +
+          '<div class="frame">' + cornersHTML() +
+            '<div class="photo" style="' + photoStyle(c.img) + '"><img src="' + c.img.src + '" alt="' + c.img.alt + '"></div>' +
+          '</div>' +
+          '<p class="cap"><span>' + c.img.cap + '</span><span>敦煌研究院公开影像</span></p>' +
+        '</div>' +
+        '<div>' + facts +
+          '<p class="closing">' + c.closing + '</p>' +
+          '<p class="stats">' + statsText() + '</p>' +
+          '<div class="end-actions">' + finalBtn +
+            '<button class="btn' + (finalBtn ? ' line' : '') + '" data-act="back">返回档案室</button>' +
+            '<button class="btn line" data-act="restart">重查这一份</button>' +
+            '<button class="btn line" data-act="sources" aria-expanded="false" aria-controls="sources">查看完整档案</button>' +
+          '</div>' +
+          sources +
+        '</div>' +
+      '</div>';
+  }
+
+  /* ================= 终章 ================= */
+
+  function renderFinal(){
+    var plates = '', srcs = '', seen = {};
+    CASES.forEach(function(c, i){
+      plates += '<button class="fp" data-act="pick" data-case="' + i + '">' +
+                  '<img src="' + c.img.src + '" alt="' + c.img.cap + '">' +
+                  '<span class="m"><b>' + c.title + '</b><span>' + c.code + ' · 莫高窟' + c.cave + ' · ' + c.era + ' · 点击重查</span></span>' +
+                '</button>';
+      c.sources.forEach(function(s){
+        if(seen[s[0]]) return;
+        seen[s[0]] = 1;
+        srcs += '<li><a href="' + s[0] + '" target="_blank" rel="noopener">' + s[1] + '</a>：' + s[2] + '</li>';
+      });
+    });
+
+    var tl = [
+      ['北魏 386–534', '第257窟 · 西壁横卷《九色鹿王本生》：莫高窟最早的一批故事画，赭红打底，八个情节由左右两端起、在中间结束。'],
+      ['隋 581–618', '第407窟 · 窟顶方井的圆心：四层八瓣莲花托着花心，三只兔子共用三耳，八身飞天环绕飞行。'],
+      ['盛唐 713–766', '第320窟 · 南壁说法图上沿：四身散花飞天两两相对，前一身回首，因含铅颜料变色俗称「黑飞天」。']
+    ];
+    var timeline = '';
+    tl.forEach(function(r){
+      timeline += '<div class="row"><b>' + r[0] + '</b><span>' + r[1] + '</span></div>';
+    });
+
+    el('final').innerHTML =
+      '<div class="final-inner">' +
+        '<div class="final-main">' +
+          '<span class="stamp reveal">终章 · 三份归批</span>' +
+          '<h2 class="reveal" style="animation-delay:.1s">它们不在同一面墙上</h2>' +
+          '<p class="sub reveal" style="animation-delay:.2s">DH-001 / DH-002 / DH-003 · 莫高窟第 407、257、320 窟 · 北魏 — 隋 — 盛唐</p>' +
+
+          '<p class="letter reveal" style="animation-delay:.3s">三份档案归到一处时，档案袋背面露出一行铅笔字：「DH-001—003，同一批移交。」没有落款，也没有年份。三个窟号不同，三个年代不同，画在三处不同的位置，却在同一批里进了同一个柜子。</p>' +
+
+          '<div class="final-body">' +
+            '<h3>一 · 位置：什么放在哪里</h3>' +
+            '<p>第407窟的纹样在窟顶最正中——方井的圆心。第257窟的故事在西壁中段，一条高一米上下、长近四米的横卷。第320窟的飞天在南壁说法图的最上沿，那道窄得几乎容不下人的空白。</p>' +
+            '<p>三处位置回答的其实是同一个问题。天的位置留给藻井：一朵大莲花套着一个圆心，圆心再放三只兔子。讲经的位置留给说法图：主尊居中，华盖在上，莲蕾花雨铺满两侧。故事的位置留给一整条横带：八个情节摊开，让观众沿着画走。连缝隙也要算进构图——四身飞天就是在缝隙里飞起来的。</p>' +
+
+            '<h3>二 · 颜料：颜色也在时间里</h3>' +
+            '<p>石青取自蓝铜矿，石绿取自孔雀石，赭红是铁红一类的土色，白来自高岭土、石膏或铅白，墨是炭黑。它们都是矿石与土，比植物色耐久，却仍然会变。</p>' +
+            '<p>所以三份档案里的色相，没有一份是初绘的颜色：赭红转向深褐，石绿失掉明度，含铅的白生出灰黑的斑——第320窟的四身飞天正是因此得名「黑飞天」。记录颜色，某种程度上是在记录一场持续千年的化学过程。</p>' +
+
+            '<h3>三 · 时间：两百多年的连续营造</h3>' +
+            '<div class="timeline">' + timeline + '</div>' +
+            '<p>三个年代之间隔了两百多年，却同在一座崖壁上。第257窟的横卷连环画，是莫高窟最早的一批故事画；隋代把「三兔共耳」放进窟顶的圆心；盛唐把四身飞天塞进说法图上沿的余白。营造没有中断，画法一直在改：早期以人物动物为主、山水只作衬景，到唐代，飞天的长带已经把风画在了墙上。</p>' +
+
+            '<h3>四 · 档案的限度</h3>' +
+            '<p>1924 年，美国探险家华尔纳从第320窟南壁盗走两方壁画；同一批文物散落海外，底片与著录也随之零散。今天这些图像还能被重新拼起来，靠的是敦煌研究院等机构长期的临摹、记录与数字化——档案不是天生的，是一代代人一点点补起来的。</p>' +
+            '<p>但底片不是壁画。它能在屏幕上让你看清三只兔子如何共用耳朵，却给不了洞窟里的光、墙面的起伏，和站在窟前那种尺度感。这是档案的用处，也是它的限度。</p>' +
+
+            '<p class="final-close">三份档案已经归批。柜门关上之前，你做的事其实很小：把「不知道」换成了「可以查」。</p>' +
+
+            '<div class="sources" id="finalSources" hidden><h3>三份档案的资料与图像出处</h3><ul>' + srcs + '</ul>' +
+            '<p>以上均取自敦煌研究院、数字敦煌等公开资料。本页为教学性互动作品：窟号、年代、构图、现存状况与色彩解释皆依这些资料整理，未虚构文物事实。</p></div>' +
+          '</div>' +
+        '</div>' +
+
+        '<aside class="final-side reveal" style="animation-delay:.4s">' +
+          '<p class="side-h">三份已归批 · 点击重查</p>' +
+          '<div class="final-plates">' + plates + '</div>' +
+          '<div class="end-actions">' +
+            '<button class="btn" data-act="again">重新探索</button>' +
+            '<button class="btn line" data-act="back">返回档案室</button>' +
+            '<button class="btn line" data-act="finalsources" aria-expanded="false" aria-controls="finalSources">查看全部出处</button>' +
+          '</div>' +
+        '</aside>' +
+      '</div>';
+
+    window.scrollTo(0, 0);
+  }
+
+  /* ================= 关卡索引条 ================= */
+
+  function renderLevels(){
+    var html = '';
+    for(var i = 1; i <= 4; i++){
+      var cls = 'lv' + (state.level === i ? ' is-active' : '') + (levelDone(i) ? ' is-done' : '');
+      html += '<div class="' + cls + '"><i></i>0' + i + ' ' + LEVEL_NAME[i - 1] + '</div>';
+    }
+    el('levels').innerHTML = html;
+    el('levels').setAttribute('aria-hidden', state.screen === 'game' ? 'false' : 'true');
+    el('levels').style.display = state.screen === 'game' ? '' : 'none';
+  }
+
+  /* ================= 总渲染 ================= */
 
   function render(){
-    var isGame = state.screen === 'game', isEnd = state.screen === 'ending';
+    var c = C();
     el('cover').hidden = state.screen !== 'cover';
-    el('workbench').hidden = !isGame;
-    el('ending').hidden = !isEnd;
+    el('hub').hidden = state.screen !== 'hub';
+    el('workbench').hidden = state.screen !== 'game';
+    el('ending').hidden = state.screen !== 'ending';
+    el('final').hidden = state.screen !== 'final';
+
+    el('mastMark').textContent =
+      state.screen === 'cover' ? '三份待编目' :
+      state.screen === 'hub' ? '档案室 · ' + doneCount() + ' / 3' :
+      state.screen === 'final' ? '终章 · 全库 ' + doneCount() + ' / 3' :
+      c.code + ' · ' + c.era;
+    el('mastSub').textContent = state.screen === 'game'
+      ? '敦煌莫高窟' + c.cave + ' · ' + c.where + ' · 一份记录散佚的图像档案'
+      : (state.screen === 'final' ? '敦煌莫高窟 · 三份档案归批 · 北魏 / 隋 / 盛唐' : '敦煌莫高窟 · 三份记录散佚的图像档案');
+
     renderLevels();
-    if(isGame){
-      renderTask();
-      renderStage();
-      renderDossier();
-    }
-    if(isEnd){
-      el('stats').textContent = statsLine();
-    }
+    if(state.screen === 'hub') renderHub();
+    if(state.screen === 'game'){ renderTask(); renderStage(); renderDossier(); }
+    if(state.screen === 'ending') renderEnding();
+    if(state.screen === 'final') renderFinal();
   }
 
-  /* ---------- 交互 ---------- */
+  /* ================= 交互 ================= */
+
   function clickHot(id){
-    if(state.l1.found) return;
-    if(id === 'rabbit'){
+    var c = C(), h = null;
+    c.hotspots.forEach(function(x){ if(x.id === id) h = x; });
+    if(!h || state.l1.found) return;
+    if(h.ok){
       state.l1.found = true;
       state.clues[0] = true;
-      setVerdict('ok','找到了：三兔共耳。三只兔子首尾相逐，两两共用一只耳朵——看上去只有三只耳朵，可从任何方向数，每只兔子都有两只。');
+      setVerdict('ok', c.l1.ok);
     } else {
-      setVerdict('no', HOT_WRONG[id] || '这里没有档案记录的形状。');
+      setVerdict('no', c.l1.wrong[id] || '这里没有档案记录的形状。');
     }
     render();
   }
 
   function clickPin(id){
-    var cur = curColor();
+    var c = C(), cur = curColor();
     if(!cur) return;
     var already = false;
-    for(var i = 0; i < state.l2.round; i++){
-      if(COLOR_ROUNDS[state.l2.seq[i]].pin === id) already = true;
-    }
+    for(var i = 0; i < state.l2.round; i++){ if(c.colors[state.l2.seq[i]].pin === id) already = true; }
     if(already) return;
     if(id === cur.pin){
       state.l2.round++;
-      if(state.l2.round >= COLOR_ROUNDS.length) state.clues[1] = true;
-      setVerdict('ok','记下了：' + cur.name + '。' + cur.ok);
+      if(state.l2.round >= c.colors.length) state.clues[1] = true;
+      setVerdict('ok', '记下了：' + cur.name + '。' + cur.ok);
     } else {
-      var pin = PINS.filter(function(p){ return p.id === id; })[0];
+      var pin = null;
+      c.pins.forEach(function(p){ if(p.id === id) pin = p; });
       state.l2.wrong++;
-      setVerdict('no','这一处取到的是' + pin.where + '，' + pin.tone + '，不是' + cur.name + '。把色卡对着画面比色相，别顺着编号点。');
+      setVerdict('no', '这一处取到的是' + pin.where + '，' + pin.tone + '，不是' + cur.name + '。把色卡对着画面比色相，别顺着编号点。');
     }
     render();
   }
 
   function clickPiece(slot){
+    var c = C();
     if(state.l3.done) return;
     if(state.l3.sel === null){
       state.l3.sel = slot;
@@ -839,8 +1211,7 @@ a:hover{color:var(--paper)}
       state.l3.sel = null;
       setVerdict('', '取消了选择。');
     } else {
-      var a = state.l3.sel, b = slot;
-      var tmp = state.l3.order[a];
+      var a = state.l3.sel, b = slot, tmp = state.l3.order[a];
       state.l3.order[a] = state.l3.order[b];
       state.l3.order[b] = tmp;
       state.l3.sel = null;
@@ -848,7 +1219,7 @@ a:hover{color:var(--paper)}
       if(state.l3.order.every(function(v, i){ return v === i; })){
         state.l3.done = true;
         state.clues[2] = true;
-        setVerdict('ok','拼合完成。六块合起来，方井的秩序才出现：圆心、莲花、环绕、边框，一层套一层。');
+        setVerdict('ok', c.l3ok);
       } else {
         setVerdict('', '交换完成，共 ' + state.l3.moves + ' 次。继续找错位的那几块。');
       }
@@ -856,56 +1227,37 @@ a:hover{color:var(--paper)}
     render();
   }
 
-  function chooseRecord(id){
+  function clickRecord(id){
+    var c = C();
     if(state.l4.done) return;
     state.l4.chosen = id;
-    if(id === 'B'){
+    var r = c.records.filter(function(x){ return x.id === id; })[0];
+    if(r && r.ok){
       state.l4.done = true;
-      setVerdict('ok','对上了。方井、四层八瓣莲花、花心三兔、八身飞天——这正是隋代第407窟的井心。档案的最后两项，是位置与年代。');
-    } else if(id === 'A'){
-      setVerdict('no','九色鹿是本生故事画，靠横向长卷讲故事；这份档案的图像是方形窟顶，讲的是图案与秩序，不是叙事。');
+      setVerdict('ok', '著录对上了：' + r.head + ' · ' + r.title + '。三份线索在这一栏合上了口。');
     } else {
-      setVerdict('no','第320窟的双飞天画在佛龛顶上，主角是两身对称的飞天；而这份档案的中心是莲花与三兔，飞天只是环绕者。');
+      setVerdict('no', '这一份对不上。看窟号与题材是否同时相符——纹样、构图、年代，缺一条就不能归入。');
     }
     render();
-  }
-
-  function nextLevel(){
-    if(state.level < 4){
-      state.level++;
-      setVerdict('', '');
-      render();
-      var wb = el('workbench');
-      if(wb && wb.scrollIntoView) wb.scrollIntoView({ behavior:'smooth', block:'start' });
-    } else {
-      state.screen = 'ending';
-      state.endAt = Date.now();
-      render();
-      window.scrollTo(0, 0);
-    }
-  }
-
-  function restart(){
-    var box = el('sources');
-    if(box){
-      box.hidden = true;
-      var sBtn = box.parentNode.querySelector('[data-act="sources"]');
-      if(sBtn){
-        sBtn.textContent = '查看完整档案';
-        sBtn.setAttribute('aria-expanded', 'false');
-      }
-    }
-    state = newState();
-    render();
-    window.scrollTo({ top:0, behavior:'smooth' });
   }
 
   function toggleSources(btn){
     var box = el('sources');
+    if(!box) return;
     var open = box.hidden;
     box.hidden = !open;
-    btn.setAttribute('aria-expanded', String(open));
-    btn.textContent = open ? '收起档案说明' : '查看完整档案';
+    if(btn){
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '收起档案出处' : '查看完整档案';
+    }
+  }
+
+  function finishCase(){
+    state.done[C().id] = true;
+    state.screen = 'ending';
+    setVerdict('', '');
+    render();
+    window.scrollTo(0, 0);
   }
 
   document.addEventListener('click', function(e){
@@ -914,36 +1266,133 @@ a:hover{color:var(--paper)}
     var act = node.getAttribute('data-act');
 
     if(act === 'start'){
-      state.screen = 'game';
-      state.level = 1;
-      state.startAt = Date.now();
+      state.screen = 'hub';
       render();
       window.scrollTo(0, 0);
       return;
     }
+    if(act === 'pick'){ enterCase(parseInt(node.getAttribute('data-case'), 10) || 0); return; }
     if(act === 'hint'){
+      var c = C();
       if(!state.hintUsed[state.level]){
         state.hints++;
         state.hintUsed[state.level] = true;
+        setVerdict('', '提示：' + c.hints[state.level]);
       }
       render();
       return;
     }
-    if(act === 'hot') return clickHot(node.getAttribute('data-hot'));
-    if(act === 'pin') return clickPin(node.getAttribute('data-pin'));
-    if(act === 'piece') return clickPiece(Number(node.getAttribute('data-slot')));
+    if(act === 'hot'){ clickHot(node.getAttribute('data-hot')); return; }
+    if(act === 'miss'){
+      if(!state.l1.found){
+        setVerdict('no', '这一处只是壁面或衬景里的东西。按残页的描述再找：形状、朝向、和周围的搭配，都对得上才算。');
+        render();
+      }
+      return;
+    }
+    if(act === 'pin'){ clickPin(node.getAttribute('data-pin')); return; }
+    if(act === 'piece'){ clickPiece(parseInt(node.getAttribute('data-slot'), 10)); return; }
     if(act === 'ghost'){
       state.l3.ghost = !state.l3.ghost;
+      state.mounted = state.level;
       render();
       return;
     }
-    if(act === 'record') return chooseRecord(node.getAttribute('data-rec'));
-    if(act === 'next') return nextLevel();
-    if(act === 'restart') return restart();
-    if(act === 'sources') return toggleSources(node);
+    if(act === 'record'){ clickRecord(node.getAttribute('data-rec')); return; }
+    if(act === 'next'){
+      if(!levelDone(state.level)) return;
+      if(state.level < 4){
+        state.level++;
+        state.mounted = 0;
+        setVerdict('', '');
+        render();
+        window.scrollTo(0, 0);
+      } else {
+        finishCase();
+      }
+      return;
+    }
+    if(act === 'restart'){ enterCase(state.ci); return; }
+    if(act === 'back'){
+      state.screen = 'hub';
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+    if(act === 'final'){
+      state.screen = 'final';
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+    if(act === 'again'){
+      state = newState();
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+    if(act === 'finalsources'){
+      var box2 = el('finalSources');
+      if(box2){
+        var open2 = box2.hidden;
+        box2.hidden = !open2;
+        node.setAttribute('aria-expanded', open2 ? 'true' : 'false');
+        node.textContent = open2 ? '收起全部出处' : '查看全部出处';
+      }
+      return;
+    }
+    if(act === 'sources'){ toggleSources(node); return; }
   });
 
-  render();
+  /* 小工具：测试/演示用的直达参数 ?c=2&l=3 */
+  (function boot(){
+    var qs = new URLSearchParams(location.search);
+    var c = qs.get('c'), l = qs.get('l');
+    if(qs.has('all')){
+      CASES.forEach(function(x){ state.done[x.id] = true; });
+      state.ci = CASES.length - 1;
+      state.screen = 'final';
+      render();
+      return;
+    }
+    if(qs.has('end3')){
+      CASES.forEach(function(x){ state.done[x.id] = true; });
+      state.ci = 1;
+      state.l1.found = true;
+      state.clues = [true, true, true];
+      state.l2 = { round:3, wrong:1, seq:[0,1,2], marks:{red:'\u2460', green:'\u2461', white:'\u2462'} };
+      state.l3 = { order:[0,1,2,3,4,5], sel:null, moves:4, done:true, ghost:false };
+      state.l4 = { chosen:'B', done:true };
+      state.hints = 2;
+      state.caseStart = Date.now() - 240000;
+      state.screen = 'ending';
+      render();
+      return;
+    }
+    if(c !== null){
+      var idx = parseInt(c, 10);
+      if(idx >= 0 && idx < CASES.length){
+        enterCase(idx);
+        if(l){
+          var lv = parseInt(l, 10);
+          if(lv >= 1 && lv <= 4){ state.level = lv; state.mounted = 0; render(); }
+        }
+        if(qs.has('done')){
+          state.l1.found = true; state.clues = [true,true,true];
+          state.l2.round = C().colors.length;
+          state.l3.done = true;
+          state.l4.done = true;
+          state.done[C().id] = true;
+          state.hints = 1; state.l2.wrong = 2; state.l3.moves = 5;
+          state.screen = 'ending';
+          render();
+          return;
+        }
+        return;
+      }
+    }
+    render();
+  })();
 })();
 </script>
 </body>
